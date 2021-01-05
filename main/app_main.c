@@ -33,9 +33,6 @@
 #ifdef CONFIG_AT_WIFI_COMMAND_SUPPORT
 #include "esp_event_loop.h"
 #include "esp_wifi.h"
-#ifdef CONFIG_IDF_TARGET_ESP8266
-#include "internal/esp_wifi_internal.h"
-#endif
 #endif
 
 #if defined(CONFIG_BT_ENABLED)
@@ -249,6 +246,12 @@ static uint8_t at_setupCmdFactPlcp(uint8_t para_num)
         return ESP_AT_RESULT_CODE_ERROR;
     }
 
+    /**
+     * TODO:
+     * Explicit include corresponding header file and call esp_wifi_set_11b_tx_plcp() API,
+     * However the SDK has not exposed this API so far.
+    */
+    void esp_wifi_set_11b_tx_plcp(bool enable, bool tx_with_long);
     esp_wifi_set_11b_tx_plcp(enable, tx_with_long);
 
     return ESP_AT_RESULT_CODE_OK;
