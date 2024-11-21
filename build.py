@@ -219,6 +219,7 @@ def build_project(platform_name, module_name, silence, build_args):
 
     compile_cmd = '{} {} {} -DIDF_TARGET={}'.format(sys_python_path, tool, build_args, platform_name.lower())
     cmd = exp_macro_cmd + '&&' + compile_cmd
+    print('\r\n\r\n\r\n ready to execute cmd:\r\n{}\r\n\r\n\r\n'.format(cmd))
     ret = subprocess.call(cmd, shell = True)
     if ret:
         raise Exception('idf.py build failed')
