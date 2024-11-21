@@ -217,7 +217,7 @@ def build_project(platform_name, module_name, silence, build_args):
     exp_macro_cmd += '{} ESP_AT_PROJECT_PATH={} &&'.format(sys_cmd, os.getcwd())
     exp_macro_cmd += '{} SILENCE={}'.format(sys_cmd, silence)
 
-    compile_cmd = '{} {} -DIDF_TARGET={} {}'.format(sys_python_path, tool, platform_name.lower(), build_args)
+    compile_cmd = '{} {} {} -DIDF_TARGET={}'.format(sys_python_path, tool, build_args, platform_name.lower())
     cmd = exp_macro_cmd + '&&' + compile_cmd
     ret = subprocess.call(cmd, shell = True)
     if ret:
