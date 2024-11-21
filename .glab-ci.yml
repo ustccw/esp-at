@@ -9,6 +9,7 @@ variables: &global-variables
   GIT_STRATEGY: clone
   GIT_SUBMODULE_STRATEGY: recursive
   ESPCI_TOKEN: $GITLAB_KEY
+  ESP_AT_FIRMWARE_FROM: glab
 
 .esp_at_build_template:
   stage: build
