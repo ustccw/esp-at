@@ -125,6 +125,19 @@ else()
     message("no extra component dirs")
 endif()
 
+# Apply possible patches before generating sdkconfig
+execute_process(
+    COMMAND ${PYTHON} $ENV{ESP_AT_PROJECT_PATH}/tools/patch.py $ENV{ESP_AT_PROJECT_PATH}/patches ${IDF_TARGET} no_sdkconfig
+    RESULT_VARIABLE result
+    OUTPUT_VARIABLE output
+    ERROR_VARIABLE error
+)
+if(NOT result EQUAL 0)
+    message(FATAL_ERROR "Failed to apply the patch before generating sdkconfig. ${error}")
+else()
+    message(STATUS "Successfully applied the patch before generating sdkconfig. ${output}")
+endif()
+
 include(${IDF_PATH}/tools/cmake/project.cmake)
 
 project(esp-at)
@@ -167,6 +180,15 @@ else()
 endif()
 add_dependencies(gen_project_binary at_net_debug)
 add_dependencies(flash at_net_debug)
+
+# Apply possible patches after generating sdkconfig
+add_custom_target(at_patch_with_sdkconfig ALL)
+add_custom_command(TARGET at_patch_with_sdkconfig
+    POST_BUILD
+    COMMAND ${PYTHON} $ENV{ESP_AT_PROJECT_PATH}/tools/patch.py $ENV{ESP_AT_PROJECT_PATH}/patches ${IDF_TARGET} with_sdkconfig
+    DEPENDS $ENV{ESP_AT_PROJECT_PATH}/sdkconfig
+    COMMENT "Apply patches after generating sdkconfig...")
+add_dependencies(gen_project_binary at_patch_with_sdkconfig)
 
 # Create factory bin
 file(MAKE_DIRECTORY $ENV{ESP_AT_PROJECT_PATH}/build/factory)
