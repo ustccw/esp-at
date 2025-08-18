@@ -1,13 +1,16 @@
 
-set(require_components nvs_flash mqtt mdns esp_http_client esp_https_ota json freertos spiffs
-    bootloader_support app_update wpa_supplicant spi_flash esp_http_server bt fatfs esp_websocket_client main)
+set(require_components esp_phy nvs_flash json freertos spiffs bootloader_support spi_flash fatfs main)
+
+if (NOT "${IDF_TARGET}" STREQUAL "esp32h2")
+    list(APPEND require_components app_update wpa_supplicant esp_websocket_client esp_http_server esp_http_client mqtt mdns esp_https_ota)
+endif()
+
+if (NOT "${IDF_TARGET}" STREQUAL "esp32s2")
+    list(APPEND require_components bt)
+endif()
 
 if ("${IDF_TARGET}" STREQUAL "esp32")
     list(APPEND require_components esp_eth)
-endif()
-
-if("${IDF_VERSION_MAJOR}.${IDF_VERSION_MINOR}" VERSION_GREATER_EQUAL "5.4")
-    list(APPEND require_components esp_hw_support)
 endif()
 
 set(srcs "")

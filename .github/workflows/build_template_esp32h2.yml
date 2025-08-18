@@ -1,0 +1,59 @@
+name: Reusable esp32h2-at workflow template
+
+on:
+  workflow_call:
+    # parameters from upstream workflow
+    inputs:
+      module_name:
+        required: true
+        type: string
+      artifacts_name:
+        required: true
+        type: string
+    # parameters from upstream inherit
+    secrets:
+      ESP32H2_2MB_TOKEN:
+        required: false
+
+jobs:
+  build-template-esp32h2:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4.2.0
+    - uses: actions/setup-python@v5.3.0
+      with:
+        python-version: '3.10'
+    - name: Set module information
+      run: |
+        mkdir build
+        echo -e "{\"platform\": \"PLATFORM_ESP32H2\", \"module\": \"${{ inputs.module_name }}\", \"silence\": 0}" > build/module_info.json
+    - name: Set up OTA tokens
+      run: |
+        cd components/at/private_include
+        rm -f at_ota_token.h
+        echo -e "#pragma once" >> at_ota_token.h
+        echo -e "#define CONFIG_ESP_AT_OTA_TOKEN_ESP32H2_2MB \"${{ secrets.ESP32H2_2MB_TOKEN }}\"" >> at_ota_token.h
+        echo -e "#define CONFIG_ESP_AT_OTA_SSL_TOKEN_ESP32H2_2MB \"${{ secrets.ESP32H2_2MB_TOKEN }}\"" >> at_ota_token.h
+        cd -
+    - name: Install environment variables
+      run: |
+        echo "ESP_AT_FIRMWARE_FROM=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}" >> "$GITHUB_ENV"
+        ./build.py install
+    - name: Compile
+      run: |
+        ./build.py build
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4.4.3
+      with:
+        name: ${{ inputs.artifacts_name }}
+        path: |
+          sdkconfig
+          build/*.bin
+          build/*.elf
+          build/*.map
+          build/bootloader/*.bin
+          build/partition_table/*.bin
+          build/customized_partitions/*
+          build/flasher_args.json
+          build/download.config
+          build/factory/*

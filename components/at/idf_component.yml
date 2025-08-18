@@ -2,8 +2,12 @@
 dependencies:
   espressif/mdns:
     version: "~1.4.2"
+    rules:
+      - if: "target not in [esp32h2]"
   espressif/esp_websocket_client:
     version: "~1.2.0"
+    rules:
+      - if: "target not in [esp32h2]"
   espressif/bootloader_support_plus:
     version: "~0.2.7"
     rules:

@@ -111,6 +111,13 @@
   - echo -e "#define CONFIG_ESP_AT_OTA_SSL_TOKEN_ESP32C6_4MB \"$AT_OTA_TOKEN_ESP32C6_4MB\"" >> at_ota_token.h
   - cd -
 
+.setup_tokens_esp32h2: &setup_tokens_esp32h2
+  - cd components/at/private_include
+  - rm -f at_ota_token.h
+  - echo -e "#define CONFIG_ESP_AT_OTA_TOKEN_ESP32H2_2MB \"$AT_OTA_TOKEN_ESP32H2_2MB\"" >> at_ota_token.h
+  - echo -e "#define CONFIG_ESP_AT_OTA_SSL_TOKEN_ESP32H2_2MB \"$AT_OTA_TOKEN_ESP32H2_2MB\"" >> at_ota_token.h
+  - cd -
+
 .setup_tokens_esp32s2: &setup_tokens_esp32s2
   - cd components/at/private_include
   - rm -f at_ota_token.h
@@ -226,6 +233,12 @@
     - source ${CI_PROJECT_DIR}/.gitlab/ci/utils.sh
     - add_gitlab_ssh_keys
     - *setup_tokens_esp32c6
+
+.before_script_esp32h2:
+  before_script:
+    - source ${CI_PROJECT_DIR}/.gitlab/ci/utils.sh
+    - add_gitlab_ssh_keys
+    - *setup_tokens_esp32h2
 
 .before_script_esp32s2:
   before_script:
@@ -346,6 +359,15 @@
     - .before_script_esp32c6
   variables:
     PLATFORM: "PLATFORM_ESP32C6"
+    SILENCE: "0"
+
+.build_template_esp32h2:
+  extends:
+    - .build_template
+    - .before_script_esp32h2
+  image: $CI_DOCKER_REGISTRY/esp-env-v5.4:1
+  variables:
+    PLATFORM: "PLATFORM_ESP32H2"
     SILENCE: "0"
 
 .build_template_esp32s2:

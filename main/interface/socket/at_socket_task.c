@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "sdkconfig.h"
+
+#ifdef CONFIG_AT_BASE_ON_SOCKET
 #include "freertos/FreeRTOS.h"
 #include "freertos/queue.h"
 #include "freertos/ringbuf.h"
@@ -21,7 +23,6 @@
 #define AT_SOCKET_RECV_BUFFER_SIZE              256
 #define AT_RING_BUFFER_SIZE                     (8 * 1024)
 
-#ifdef CONFIG_AT_BASE_ON_SOCKET
 #include "sys/socket.h"
 #include "netdb.h"
 #include "esp_at.h"

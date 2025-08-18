@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "sdkconfig.h"
+
+#ifdef CONFIG_AT_BASE_ON_SPI
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/semphr.h"
@@ -14,7 +16,6 @@
 #include "esp_system.h"
 #include "esp_log.h"
 
-#ifdef CONFIG_AT_BASE_ON_SPI
 #include "driver/gpio.h"
 #include "driver/spi_slave_hd.h"
 #include "esp_at.h"

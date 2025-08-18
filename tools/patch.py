@@ -18,7 +18,7 @@ def ESP_LOGE(x):
 
 at_patch_defaults = {
     'path': 'esp-idf',
-    'target': ['esp32c2', 'esp32c3', 'esp32c5', 'esp32c6', 'esp32', 'esp32s2'],
+    'target': ['esp32c2', 'esp32c3', 'esp32c5', 'esp32c6', 'esp32', 'esp32s2', 'esp32h2'],
     'when': 'before_sdkconfig',
     'dependency': None,
 }

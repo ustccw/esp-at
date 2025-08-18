@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "sdkconfig.h"
+
+#ifdef CONFIG_AT_BASE_ON_SDIO
 #include "freertos/FreeRTOS.h"
 #include "freertos/queue.h"
 #include "freertos/ringbuf.h"
@@ -17,7 +19,6 @@
 #include "esp_log.h"
 #include "nvs_flash.h"
 
-#ifdef CONFIG_AT_BASE_ON_SDIO
 #include "driver/sdio_slave.h"
 #include "soc/slc_struct.h"
 #include "soc/slc_reg.h"

@@ -9,6 +9,7 @@
 #include <string.h>
 #include "sdkconfig.h"
 
+#ifdef CONFIG_AT_USER_COMMAND_SUPPORT
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/semphr.h"
@@ -22,12 +23,13 @@
 #include "at_compress_ota.h"
 #endif
 
+#ifdef CONFIG_SOC_WIFI_SUPPORTED
 #include "esp_http_client.h"
 #include "esp_https_ota.h"
+#endif
+
 #include "esp_at_core.h"
 #include "esp_at.h"
-
-#ifdef CONFIG_AT_USER_COMMAND_SUPPORT
 
 #define AT_USERRAM_READ_BUFFER_SIZE     1024
 #define AT_USEROTA_URL_LEN_MAX          (8 * 1024)
@@ -251,6 +253,7 @@ static uint8_t at_query_cmd_userram(uint8_t *cmd_name)
     return ESP_AT_RESULT_CODE_OK;
 }
 
+#ifdef CONFIG_SOC_WIFI_SUPPORTED
 static esp_err_t _http_event_handler(esp_http_client_event_t *evt)
 {
     switch (evt->event_id) {
@@ -391,6 +394,7 @@ static uint8_t at_setup_cmd_userota(uint8_t para_num)
         return ESP_AT_RESULT_CODE_ERROR;
     }
 }
+#endif
 
 static uint8_t at_query_cmd_userdocs(uint8_t *cmd_name)
 {
@@ -663,7 +667,11 @@ static uint8_t at_setup_cmd_usermcusleep(uint8_t para_num)
 
 static const esp_at_cmd_struct s_at_user_cmd[] = {
     {"+USERRAM", NULL, at_query_cmd_userram, at_setup_cmd_userram, NULL},
+
+#ifdef CONFIG_SOC_WIFI_SUPPORTED
     {"+USEROTA", NULL, NULL, at_setup_cmd_userota, NULL},
+#endif
+
     {"+USERDOCS", NULL, at_query_cmd_userdocs, NULL, NULL},
 #ifdef CONFIG_AT_USERWKMCU_COMMAND_SUPPORT
     {"+USERWKMCUCFG", NULL, NULL, at_setup_cmd_userwkmcucfg, NULL},

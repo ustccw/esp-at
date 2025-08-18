@@ -62,12 +62,12 @@ config AT_USERWKMCU_COMMAND_SUPPORT
 config AT_WIFI_COMMAND_SUPPORT
     bool "AT wifi command support."
     default "y"
-    depends on AT_ENABLE
+    depends on AT_ENABLE && SOC_WIFI_SUPPORTED
 
 config AT_NET_COMMAND_SUPPORT
     bool "AT net command support."
     default "y"
-    depends on AT_ENABLE
+    depends on AT_ENABLE && SOC_WIFI_SUPPORTED
 
 config AT_SOCKET_MAX_CONN_NUM
     int "AT socket maximum connection number"
@@ -101,7 +101,7 @@ endmenu
 config AT_MDNS_COMMAND_SUPPORT
     bool "AT MDNS command support."
     default "y"
-    depends on AT_ENABLE
+    depends on AT_ENABLE && AT_WIFI_COMMAND_SUPPORT
 
 config AT_WPS_COMMAND_SUPPORT
     bool "AT WPS command support."
@@ -116,12 +116,12 @@ config AT_SMARTCONFIG_COMMAND_SUPPORT
 config AT_PING_COMMAND_SUPPORT
     bool "AT ping command support."
     default "y"
-    depends on AT_ENABLE
+    depends on AT_ENABLE && SOC_WIFI_SUPPORTED
 
 config AT_MQTT_COMMAND_SUPPORT
     bool "AT MQTT command support."
     default "n"
-    depends on AT_ENABLE
+    depends on AT_ENABLE && SOC_WIFI_SUPPORTED
 
 menu "AT MQTT authentication method"
     depends on AT_MQTT_COMMAND_SUPPORT
@@ -138,7 +138,7 @@ endmenu
 config AT_HTTP_COMMAND_SUPPORT
     bool "AT HTTP command support."
     default "n"
-    depends on AT_ENABLE
+    depends on AT_ENABLE && SOC_WIFI_SUPPORTED
     help
         Please enlarge AT_PROCESS_TASK_STACK_SIZE to be more than 4096 if HTTPS link need to establish,
         otherwise, unexpected crash probably occur due to AT process task overflow.
@@ -172,7 +172,7 @@ config AT_HTTP_RX_BUFFER_SIZE
 config AT_WS_COMMAND_SUPPORT
     bool "AT WebSocket command support."
     default "n"
-    depends on AT_ENABLE
+    depends on AT_ENABLE && SOC_WIFI_SUPPORTED
 
 menu "AT WebSocket authentication method"
     depends on AT_WS_COMMAND_SUPPORT
@@ -195,12 +195,12 @@ config AT_BLE_COMMAND_SUPPORT
 config AT_BLE_HID_COMMAND_SUPPORT
     bool "AT ble hid command support."
     default "y"
-    depends on AT_ENABLE && BT_ENABLED && !IDF_TARGET_ESP32C2 && !IDF_TARGET_ESP32C6
+    depends on AT_ENABLE && BT_ENABLED && BT_BLUEDROID_ENABLED
 
 config AT_BLUFI_COMMAND_SUPPORT
     bool "AT blufi command support."
     default "y"
-    depends on AT_ENABLE && BT_ENABLED && (!IDF_TARGET_ESP32C2 || (BT_NIMBLE_ENABLED && BT_NIMBLE_BLUFI_ENABLE && BT_NIMBLE_EXT_ADV))
+    depends on AT_ENABLE && BT_ENABLED && (!IDF_TARGET_ESP32C2 || (BT_NIMBLE_ENABLED && BT_NIMBLE_BLUFI_ENABLE && BT_NIMBLE_EXT_ADV))  && SOC_WIFI_SUPPORTED
 
 config AT_BT_COMMAND_SUPPORT
     bool "AT bt command support."
@@ -291,7 +291,7 @@ config AT_DRIVER_COMMAND_SUPPORT
 config AT_SIGNALING_COMMAND_SUPPORT
     bool "AT signaling test command support."
     default "y"
-    depends on AT_ENABLE
+    depends on AT_ENABLE && SOC_WIFI_SUPPORTED
 
 config AT_EAP_COMMAND_SUPPORT
     bool "AT WPA2 Enterprise command support."
@@ -301,7 +301,7 @@ config AT_EAP_COMMAND_SUPPORT
 config AT_WEB_SERVER_SUPPORT
     bool "AT WEB Server command support."
     default "n"
-    depends on AT_ENABLE
+    depends on AT_ENABLE && SOC_WIFI_SUPPORTED
     help
       Please enable this configure if you want use web server.
 
@@ -333,7 +333,7 @@ config AT_WEB_ROOT_DIR
 config AT_OTA_SUPPORT
     bool "AT OTA command support."
     default "y"
-    depends on AT_ENABLE
+    depends on AT_ENABLE && SOC_WIFI_SUPPORTED
 
 config AT_OTA_SERVER_IP
     string "Server IP for AT OTA."
@@ -373,7 +373,7 @@ config AT_OTA_SSL_TOKEN_KEY
 config AT_RAINMAKER_COMMAND_SUPPORT
     bool "AT RAINMAKER command support."
     default n
-    depends on AT_ENABLE
+    depends on AT_ENABLE && SOC_WIFI_SUPPORTED
     depends on IDF_TARGET_ESP32C3
 
 menu "AT Log Level"
@@ -461,7 +461,7 @@ menuconfig AT_DEBUG
 
     config AT_NET_DEBUG
         bool "Enable Network Debug"
-        depends on AT_DEBUG && (LOG_DEFAULT_LEVEL_INFO || LOG_DEFAULT_LEVEL_DEBUG || LOG_DEFAULT_LEVEL_VERBOSE)
+        depends on AT_DEBUG && (LOG_DEFAULT_LEVEL_INFO || LOG_DEFAULT_LEVEL_DEBUG || LOG_DEFAULT_LEVEL_VERBOSE) && SOC_WIFI_SUPPORTED
         default n
         help
             Enabling this option allows different kinds of network debug output, and these debug outputs will be sent to the AT log port.

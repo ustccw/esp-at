@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2024-2025 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -22,9 +22,7 @@
 #include "esp32s2/rom/uart.h"
 #endif
 
-#if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 4, 0)
 #include "driver/uart.h"
-#endif
 
 /*******************************************************
  *                Macros
@@ -77,6 +75,13 @@
 #define CONFIG_AT_UART_PORT_RX_PIN_DEFAULT          6
 #define CONFIG_AT_UART_PORT_CTS_PIN_DEFAULT         5
 #define CONFIG_AT_UART_PORT_RTS_PIN_DEFAULT         4
+#endif
+
+#if defined(CONFIG_IDF_TARGET_ESP32H2)
+#define CONFIG_AT_UART_PORT_TX_PIN_DEFAULT          10
+#define CONFIG_AT_UART_PORT_RX_PIN_DEFAULT          11
+#define CONFIG_AT_UART_PORT_CTS_PIN_DEFAULT         12
+#define CONFIG_AT_UART_PORT_RTS_PIN_DEFAULT         22
 #endif
 
 #if defined(CONFIG_IDF_TARGET_ESP32C2)

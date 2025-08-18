@@ -8,7 +8,10 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "esp_partition.h"
+
+#ifdef CONFIG_SOC_WIFI_SUPPORTED
 #include "esp_wifi.h"
+#endif
 
 #define at_min(x,y)     ((x)<(y)?(x):(y))
 #define at_max(x,y)     ((x)>(y)?(x):(y))
