@@ -1,0 +1,69 @@
+name: Build ESP-AT Project (ESP32-C2)
+
+on: push
+
+jobs:
+  build-esp32c2-4mb-at:
+    uses: ./.github/workflows/build_template_esp32c2.yml
+    with:
+      module_name: ESP32C2-4MB
+      artifacts_name: esp32c2-4MB-at
+    secrets: inherit
+
+  build-esp32c2-2mb-at:
+    uses: ./.github/workflows/build_template_esp32c2.yml
+    with:
+      module_name: ESP32C2-2MB
+      artifacts_name: esp32c2-2MB-at
+    secrets: inherit
+
+  build-esp32c2-2mb-ble-at:
+    uses: ./.github/workflows/build_template_esp32c2.yml
+    with:
+      module_name: ESP32C2-2MB-BLE
+      artifacts_name: esp32c2-2mb-ble-at
+    secrets: inherit
+
+  build-esp32c2-4mb-g2-at:
+    uses: ./.github/workflows/build_template_esp32c2.yml
+    with:
+      module_name: ESP32C2-4MB-G2
+      artifacts_name: esp32c2-4MB-g2-at
+    secrets: inherit
+
+  build-esp32c2-4mb-g2-debug-at:
+    uses: ./.github/workflows/build_template_esp32c2.yml
+    with:
+      module_name: ESP32C2-4MB-G2
+      artifacts_name: esp32c2-4MB-g2-debug-at
+      enable_at_debug: true
+    secrets: inherit
+
+  build-esp32c2-4mb-ble-g2-at:
+    uses: ./.github/workflows/build_template_esp32c2.yml
+    with:
+      module_name: ESP32C2-4MB-G2
+      artifacts_name: esp32c2-4MB-ble-g2-at
+      enable_ble_cmds: true
+    secrets: inherit
+
+  build-esp32c2-2mb-g2-at:
+    uses: ./.github/workflows/build_template_esp32c2.yml
+    with:
+      module_name: ESP32C2-2MB-G2
+      artifacts_name: esp32c2-2MB-g2-at
+    secrets: inherit
+
+  build-esp32c2-2mb-ble-g2-at:
+    uses: ./.github/workflows/build_template_esp32c2.yml
+    with:
+      module_name: ESP32C2-2MB-BLE-G2
+      artifacts_name: esp32c2-2mb-ble-g2-at
+    secrets: inherit
+
+  build-esp32c2-2mb-no-ota-g2-at:
+    uses: ./.github/workflows/build_template_esp32c2.yml
+    with:
+      module_name: ESP32C2-2MB-NO-OTA-G2
+      artifacts_name: esp32c2-2mb-no-ota-g2-at
+    secrets: inherit

@@ -1,0 +1,77 @@
+name: Build ESP-AT Project (ESP32)
+
+on: push
+
+jobs:
+  build-esp32-wroom-at:
+    uses: ./.github/workflows/build_template_esp32.yml
+    with:
+      module_name: WROOM-32
+      artifacts_name: esp32-wroom-at
+    secrets: inherit
+
+  build-esp32-wrover-at:
+    uses: ./.github/workflows/build_template_esp32.yml
+    with:
+      module_name: WROVER-32
+      artifacts_name: esp32-wrover-at
+    secrets: inherit
+
+  build-esp32-pico-d4-at:
+    uses: ./.github/workflows/build_template_esp32.yml
+    with:
+      module_name: PICO-D4
+      artifacts_name: esp32-pico-d4-at
+    secrets: inherit
+
+  build-esp32-solo-at:
+    uses: ./.github/workflows/build_template_esp32.yml
+    with:
+      module_name: SOLO-1
+      artifacts_name: esp32-solo-1-at
+    secrets: inherit
+
+  build-esp32-d2wd-at:
+    uses: ./.github/workflows/build_template_esp32.yml
+    with:
+      module_name: ESP32-D2WD
+      artifacts_name: esp32-d2wd-at
+    secrets: inherit
+
+  build-esp32-mini-1-at:
+    uses: ./.github/workflows/build_template_esp32.yml
+    with:
+      module_name: MINI-1
+      artifacts_name: esp32-mini-1-at
+    secrets: inherit
+
+  build-esp32-sdio-at:
+    uses: ./.github/workflows/build_template_esp32.yml
+    with:
+      module_name: ESP32-SDIO
+      artifacts_name: esp32-sdio-at
+    secrets: inherit
+
+  build-esp32-at-all-wifi-features-no-bt:
+    uses: ./.github/workflows/build_template_esp32.yml
+    with:
+      module_name: WROVER-32
+      artifacts_name: esp32-at-all-wifi-features-no-bt
+      enable_all_wifi_features_no_bt: true
+    secrets: inherit
+
+  build-esp32-at-all-bt-features-no-wifi:
+    uses: ./.github/workflows/build_template_esp32.yml
+    with:
+      module_name: WROVER-32
+      artifacts_name: esp32-at-all-bt-features-no-wifi
+      enable_all_bt_features_no_wifi: true
+    secrets: inherit
+
+  build-esp32-wroom-debug-at:
+    uses: ./.github/workflows/build_template_esp32.yml
+    with:
+      module_name: WROOM-32
+      artifacts_name: esp32-wroom-debug-at
+      enable_at_debug: true
+    secrets: inherit

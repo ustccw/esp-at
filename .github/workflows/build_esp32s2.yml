@@ -1,0 +1,19 @@
+name: Build ESP-AT Project (ESP32-S2)
+
+on: push
+
+jobs:
+  build-esp32s2-mini-at:
+    uses: ./.github/workflows/build_template_esp32s2.yml
+    with:
+      module_name: MINI
+      artifacts_name: esp32s2-mini-at
+    secrets: inherit
+
+  build-esp32s2-mini-debug-at:
+    uses: ./.github/workflows/build_template_esp32s2.yml
+    with:
+      module_name: MINI
+      artifacts_name: esp32s2-mini-debug-at
+      enable_at_debug: true
+    secrets: inherit
