@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# SPDX-FileCopyrightText: 2024 Espressif Systems (Shanghai) CO LTD
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
 # SPDX-License-Identifier: Apache-2.0
 
 import os, re, sys, subprocess, argparse
@@ -157,6 +157,14 @@ def create_ble_data_csv(args):
         for item in to_write_csv_items:
             f.write(item + '\n')
 
+def _is_nvs_encryption_enabled(project_path):
+    """Check CONFIG_NVS_ENCRYPTION=y in sdkconfig."""
+    sdkconfig = os.path.join(project_path, 'sdkconfig')
+    if os.path.isfile(sdkconfig):
+        with open(sdkconfig) as f:
+            return 'CONFIG_NVS_ENCRYPTION=y' in f.read()
+    return False
+
 def generate_mfg_bin(args):
     if sys.platform == 'win32':
         sys_python_path = sys.executable
@@ -170,7 +178,16 @@ def generate_mfg_bin(args):
     mfg_csv = os.path.join(args.outdir, args.partition_name + '.csv')
     mfg_bin = os.path.join(args.outdir, args.partition_name + '.bin')
 
-    cmd = '{} {} generate {} {} {}'.format(sys_python_path, nvs_tool, mfg_csv, mfg_bin, at_parse_size(args.partition_size))
+    if _is_nvs_encryption_enabled(args.project_path):
+        keys_path = os.path.join(args.project_path, 'module_config', 'flash_encryption', 'sample_encryption_keys.bin')
+        if not os.path.isfile(keys_path):
+            raise Exception('NVS encryption enabled but key file not found: {}'.format(keys_path))
+        cmd = '{} {} encrypt {} {} {} --inputkey {}'.format(
+            sys_python_path, nvs_tool, mfg_csv, mfg_bin, at_parse_size(args.partition_size), keys_path)
+    else:
+        cmd = '{} {} generate {} {} {}'.format(
+            sys_python_path, nvs_tool, mfg_csv, mfg_bin, at_parse_size(args.partition_size))
+
     ret = subprocess.call(cmd, shell = True)
     if ret or not os.path.exists(mfg_bin):
         raise Exception('{}'.format(cmd))

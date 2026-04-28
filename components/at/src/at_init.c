@@ -301,11 +301,31 @@ static void at_nvs_flash_init_partition(void)
 {
     const esp_partition_t *partition = esp_at_custom_partition_find(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_DATA_NVS, g_at_mfg_nvs_name);
     if (partition) {
+#ifdef CONFIG_NVS_ENCRYPTION
+        // NVS encryption: read security config from nvs_keys partition, then secure-init mfg_nvs
+        const esp_partition_t *key_part = esp_partition_find_first(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_DATA_NVS_KEYS, NULL);
+        if (key_part == NULL) {
+            ESP_AT_LOGE(TAG, "nvs_keys partition not found, cannot init NVS encryption");
+        } else {
+            nvs_sec_cfg_t sec_cfg = {0};
+            esp_err_t err = nvs_flash_read_security_cfg(key_part, &sec_cfg);
+            if (err == ESP_OK) {
+                err = nvs_flash_secure_init_partition(g_at_mfg_nvs_name, &sec_cfg);
+            }
+            if (err == ESP_OK) {
+                s_at_param_mode = AT_PARAMS_IN_MFG_NVS;
+                ESP_AT_LOGI(TAG, "NVS encryption enabled, mfg_nvs is encrypted successfully");
+            } else {
+                ESP_AT_LOGE(TAG, "secure init mfg_nvs failed (0x%x)", err);
+            }
+        }
+#else
         if (nvs_flash_init_partition_ptr(partition) != ESP_OK) {
             ESP_AT_LOGE(TAG, "init partition ptr failed");
         } else {
             s_at_param_mode = AT_PARAMS_IN_MFG_NVS;
         }
+#endif
     } else if (esp_at_custom_partition_find(0x40, 0xff, "factory_param")) {
         s_at_param_mode = AT_PARAMS_IN_PARTITION;
     } else {

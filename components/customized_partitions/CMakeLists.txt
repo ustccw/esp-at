@@ -23,11 +23,19 @@ if (CONFIG_AT_CUSTOMIZED_PARTITION_TABLE_SUPPORT)
             ${AT_CUSTOM_PARTITION_TABLE_PATH} ${build_dir}/${customize_bin_full_name}
     )
     esptool_py_custom_target(${customize_bin} ${customize_bin} "${customize_bin}")
-    esptool_py_flash_target_image(flash "${customize_bin}" "${CONFIG_AT_CUSTOMIZED_PARTITION_TABLE_OFFSET}" "${build_dir}/${customize_bin_full_name}")
+    # at_customize.bin is a metadata table (partition offsets/sizes), not marked "encrypted"
+    # in partitions_at.csv. When flash encryption is enabled, flash it as plaintext so the
+    # on-chip decryption engine does not try to decrypt it.
+    if(CONFIG_SECURE_FLASH_ENC_ENABLED)
+        esptool_py_flash_target_image(flash "${customize_bin}" "${CONFIG_AT_CUSTOMIZED_PARTITION_TABLE_OFFSET}" "${build_dir}/${customize_bin_full_name}" ALWAYS_PLAINTEXT)
+    else()
+        esptool_py_flash_target_image(flash "${customize_bin}" "${CONFIG_AT_CUSTOMIZED_PARTITION_TABLE_OFFSET}" "${build_dir}/${customize_bin_full_name}")
+    endif()
 
     # parse sub-item of at_customize.csv, get necessary item, and add it to flash target
     execute_process(
         COMMAND ${PYTHON} ${COMPONENT_DIR}/at_customized_target_generate.py
+            --project_dir ${project_dir}
             --sdkconfig_file ${project_dir}/sdkconfig
             --dependency_file ${COMPONENT_DIR}/at_customized_config_dependency.txt
             --partition_file ${AT_CUSTOM_PARTITION_TABLE_PATH}
@@ -46,8 +54,20 @@ if (CONFIG_AT_CUSTOMIZED_PARTITION_TABLE_SUPPORT)
         list(GET args_lists 0 offset)
         list(GET args_lists 1 file_path)
         STRING(REGEX REPLACE ".*[/\\](.*)\.bin" "\\1" file_name ${file_path})
-        esptool_py_custom_target(${file_name} ${file_name} "${file_name}")
-        esptool_py_flash_target_image(flash "${file_name}" "${offset}" "${file_path}")
+
+        # Flash encryption + NVS encryption support:
+        # - mfg_nvs.bin is pre-encrypted by nvs_partition_gen.py, must be flashed as plaintext
+        # - sample_encryption_keys.bin is the NVS key, register it as nvs_key flash target
+        if(CONFIG_NVS_ENCRYPTION AND "${file_name}" STREQUAL "mfg_nvs")
+            esptool_py_custom_target(mfg_nvs mfg_nvs "mfg_nvs")
+            esptool_py_flash_target_image(flash "mfg_nvs" "${offset}" "${file_path}" ALWAYS_PLAINTEXT)
+        elseif(CONFIG_NVS_ENCRYPTION AND "${file_name}" STREQUAL "sample_encryption_keys")
+            esptool_py_custom_target(nvs_key nvs_key "nvs_key")
+            esptool_py_flash_target_image(flash "nvs_key" "${offset}" "${file_path}")
+        else()
+            esptool_py_custom_target(${file_name} ${file_name} "${file_name}")
+            esptool_py_flash_target_image(flash "${file_name}" "${offset}" "${file_path}")
+        endif()
     endforeach(partition_args)
 
     file(MAKE_DIRECTORY ${build_dir}/include)

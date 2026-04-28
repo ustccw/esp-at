@@ -38,6 +38,9 @@ def main():
                 file_name = os.path.basename(full_filename)
                 partition_name = os.path.splitext(file_name)[0]
                 tool_name = os.path.join(tools_dir, ''.join([partition_name, '.py']))
+                # Skip entries without a generation tool (e.g., nvs encryption keys)
+                if not os.path.isfile(tool_name):
+                    continue
                 if not os.access(tool_name, os.X_OK):
                     os.chmod(tool_name, stat.S_IRUSR | stat.S_IXUSR)
                 ret = subprocess.call([sys.executable, tool_name, '--partition_name', partition_name, '--partition_size', file_size, '--outdir', output_dir, '--project_path', project_dir], shell = False)

@@ -1,2 +1,2 @@
 # Name, Type, SubType, Offset, Size
-mfg_nvs, data, nvs, 0x1b000, 60K
+mfg_nvs, data, nvs, 0x20000, 60K
