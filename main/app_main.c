@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -9,6 +9,14 @@
 
 #include "esp_at.h"
 #include "esp_at_init.h"
+
+void esp_at_ready_before(void)
+{
+    at_exe_cmd("AT+GMR\r\n", "OK", 1000);
+    at_exe_cmd("AT+CWMODE=1\r\n", "OK", 3000);
+    at_exe_cmd("AT+CWHOSTNAME=\"esp32c2-at-current-test\"\r\n", "OK", 3000);
+    at_exe_cmd("AT+CWJAP=\"iPhone\",\"123456789\"\r\n", "OK", 15000);
+}
 
 void app_main(void)
 {

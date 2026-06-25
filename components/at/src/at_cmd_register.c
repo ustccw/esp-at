@@ -22,6 +22,8 @@ ESP_AT_CMD_SET_FIRST_INIT_FN(esp_at_base_cmd_regist, 1);
 ESP_AT_CMD_SET_FIRST_INIT_FN(esp_at_wifi_cmd_regist, 2);
 #endif
 
+#if 0
+
 #ifdef CONFIG_AT_SMARTCONFIG_COMMAND_SUPPORT
 ESP_AT_CMD_SET_FIRST_INIT_FN(esp_at_smartconfig_cmd_regist, 3);
 #endif
@@ -92,6 +94,8 @@ ESP_AT_CMD_SET_FIRST_INIT_FN(esp_at_driver_cmd_regist, 19);
 
 #ifdef CONFIG_AT_ETHERNET_SUPPORT
 ESP_AT_CMD_SET_FIRST_INIT_FN(esp_at_eth_cmd_regist, 2);
+#endif
+
 #endif
 
 void esp_at_cmd_set_register(void)
