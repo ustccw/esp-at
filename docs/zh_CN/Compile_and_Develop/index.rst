@@ -22,6 +22,7 @@
    :esp32 or esp32c5 or esp32c6 or esp32c61: 如何实现 SDIO AT <How_to_implement_SDIO_AT>
    :esp32c2 or esp32c3 or esp32c5 or esp32c6 or esp32c61: 如何实现 SPI AT <How_to_implement_SPI_AT>
    如何基于乐鑫服务器实现自己的 OTA 管理 <How_to_implement_OTA_update>
+   :esp32 or esp32c2 or esp32c3 or esp32c5 or esp32c6 or esp32c61: 如何实现 Bluetooth LE OTA 升级 <How_to_implement_BLE_OTA_update>
    如何更新 ESP-IDF 版本 <How_to_update_IDF>
    ESP-AT 固件差异 <esp-at_firmware_differences>
    如何从 GitHub 下载最新临时版本 AT 固件 <How_to_download_the_latest_temporary_version_of_AT_from_github>

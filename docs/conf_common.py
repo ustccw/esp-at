@@ -28,6 +28,7 @@ CLASSIC_BT_DOCS = ['AT_Command_Set/BT_AT_Commands.rst',
 
 BLE_DOCS = ['AT_Command_Examples/bluetooth_le_at_examples.rst',
             'Compile_and_Develop/How_to_customize_BLE_services.rst',
+            'Compile_and_Develop/How_to_implement_BLE_OTA_update.rst',
             'AT_Command_Set/BLE_AT_Commands.rst']
 
 
