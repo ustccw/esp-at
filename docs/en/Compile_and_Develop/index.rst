@@ -22,6 +22,7 @@ How to Compile and Develop Your Own AT Project
    :esp32 or esp32c5 or esp32c6 or esp32c61: How to Implement SDIO AT <How_to_implement_SDIO_AT>
    :esp32c2 or esp32c3 or esp32c5 or esp32c6 or esp32c61: How to Implement SPI AT <How_to_implement_SPI_AT>
    How to Implement OTA Update <How_to_implement_OTA_update>
+   :esp32 or esp32c2 or esp32c3 or esp32c5 or esp32c6 or esp32c61: How to Implement Bluetooth LE OTA Upgrade <How_to_implement_BLE_OTA_update>
    How to Update IDF <How_to_update_IDF>
    ESP-AT Firmware Differences <esp-at_firmware_differences>
    How to Download the Latest Temporary Version of AT Firmware from GitHub <How_to_download_the_latest_temporary_version_of_AT_from_github>

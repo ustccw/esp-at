@@ -64,6 +64,8 @@ Bluetooth® Low Energy AT 命令集
     :esp32c3 or esp32c5 or esp32c6 or esp32c61 or esp32c2: - :ref:`AT+BLESETPHY <cmd-BLESETPHY>`：设置当前连接使用的 PHY
     :esp32 or esp32c3: - :ref:`AT+BLERDRSSI <cmd-BLERDRSSI>`：查询当前连接的 RSSI
     :esp32 or esp32c3: - :ref:`AT+BLEWL <cmd-BLEWL>`：设置白名单
+    :esp32 or esp32c3 or esp32c5 or esp32c6 or esp32c61 or esp32c2: - :ref:`AT+BLEOTANAME <cmd-BLEOTANAME>`：查询/设置 Bluetooth LE OTA 设备名称
+    :esp32 or esp32c3 or esp32c5 or esp32c6 or esp32c61 or esp32c2: - :ref:`AT+BLEOTA <cmd-BLEOTA>`：初始化或反初始化 Bluetooth LE OTA
 
 .. _cmd-ble-intro:
 
@@ -3550,3 +3552,147 @@ Bluetooth® Low Energy AT 命令集
 
         AT+BLEWL=1,0,"24:0a:c4:09:34:23" // 添加设备到白名单
         AT+BLEWL=0 // 删除所有设备从白名单
+
+.. only:: esp32 or esp32c3 or esp32c5 or esp32c6 or esp32c61 or esp32c2
+
+    .. _cmd-BLEOTANAME:
+
+    :ref:`AT+BLEOTANAME <BLE-AT>`：查询/设置 Bluetooth LE OTA 设备名称
+    --------------------------------------------------------------------------------------
+
+    查询命令
+    ^^^^^^^^
+
+    **功能：**
+
+    查询 Bluetooth LE OTA 设备名称
+
+    **命令：**
+
+    ::
+
+        AT+BLEOTANAME?
+
+    **响应：**
+
+    ::
+
+        +BLEOTANAME:<device_name>
+        OK
+
+    设置命令
+    ^^^^^^^^
+
+    **功能：**
+
+    设置 Bluetooth LE OTA 设备名称
+
+    **命令：**
+
+    ::
+
+        AT+BLEOTANAME=<device_name>
+
+    **响应：**
+
+    ::
+
+        OK
+
+    参数
+    ^^^^
+
+    - **<device_name>**：Bluetooth LE OTA 设备名称，最大长度：29 字节，默认名称为 "ESP-C919"。
+
+    说明
+    ^^^^
+
+    - 如需设置 Bluetooth LE OTA 设备名称，请在运行 :ref:`AT+BLEOTA=1 <cmd-BLEOTA>` 命令前设置，否则将使用默认名称 ``ESP-C919``。
+
+    示例
+    ^^^^
+
+    ::
+
+        AT+BLEOTANAME="NAME"
+        AT+BLEOTANAME?
+
+    .. _cmd-BLEOTA:
+
+    :ref:`AT+BLEOTA <BLE-AT>`：初始化或反初始化 Bluetooth LE OTA
+    ----------------------------------------------------------------------------
+
+    查询命令
+    ^^^^^^^^
+
+    **功能：**
+
+    查询 Bluetooth LE OTA 初始化状态
+
+    **命令：**
+
+    ::
+
+        AT+BLEOTA?
+
+    **响应：**
+
+    若 Bluetooth LE OTA 未初始化，则返回：
+
+    ::
+
+        +BLEOTA:0
+
+        OK
+
+    若 Bluetooth LE OTA 已初始化，则返回：
+
+    ::
+
+        +BLEOTA:1
+
+        OK
+
+    设置命令
+    ^^^^^^^^
+
+    **功能：**
+
+    初始化或反初始化 Bluetooth LE OTA
+
+    **命令：**
+
+    ::
+
+        AT+BLEOTA=<init>
+
+    **响应：**
+
+    ::
+
+        OK
+
+    参数
+    ^^^^
+
+    - **<init>**：
+
+       - 0: 反初始化 Bluetooth LE OTA；
+       - 1: 初始化 Bluetooth LE OTA。
+
+    说明
+    ^^^^
+
+    - 默认 AT 固件未使能本命令。如需使用，请参考 :doc:`../Compile_and_Develop/How_to_implement_BLE_OTA_update` 开启配置（并使能时同步将 MTU 建议设置为 512）后重新编译。
+    - 如需设置 Bluetooth LE OTA 设备名称，请在运行本命令初始化前执行 :ref:`AT+BLEOTANAME <cmd-BLEOTANAME>` 命令。
+    - 初始化成功后，设备会自动开启广播，等待对端 APP 连接，然后从对端 APP 接收 OTA 固件。
+    - 固件传输完成并校验通过后，设备会自动重启。
+    - 请参考 :doc:`../Compile_and_Develop/How_to_implement_BLE_OTA_update` 获取 GATT 服务、对端 APP 操作顺序和数据包格式说明。
+
+    示例
+    ^^^^
+
+    ::
+
+        AT+BLEOTANAME="NAME"
+        AT+BLEOTA=1

@@ -64,6 +64,8 @@ Bluetooth® Low Energy AT Commands
     :esp32c3 or esp32c5 or esp32c6 or esp32c61 or esp32c2: - :ref:`AT+BLESETPHY <cmd-BLESETPHY>`: Set the current transmitter PHY.
     :esp32 or esp32c3: - :ref:`AT+BLERDRSSI <cmd-BLERDRSSI>`: Query the current connection RSSI.
     :esp32 or esp32c3: - :ref:`AT+BLEWL <cmd-BLEWL>`: Set the whitelist.
+    :esp32 or esp32c3 or esp32c5 or esp32c6 or esp32c61 or esp32c2: - :ref:`AT+BLEOTANAME <cmd-BLEOTANAME>`: Query or set Bluetooth LE OTA device name.
+    :esp32 or esp32c3 or esp32c5 or esp32c6 or esp32c61 or esp32c2: - :ref:`AT+BLEOTA <cmd-BLEOTA>`: Initialize or deinitialize Bluetooth LE OTA.
 
 .. _cmd-ble-intro:
 
@@ -3550,3 +3552,147 @@ Introduction
 
         AT+BLEWL=1,0,"24:0a:c4:09:34:23" // add a device to the whitelist
         AT+BLEWL=0 // remove all devices from the whitelist
+
+.. only:: esp32 or esp32c3 or esp32c5 or esp32c6 or esp32c61 or esp32c2
+
+    .. _cmd-BLEOTANAME:
+
+    :ref:`AT+BLEOTANAME <BLE-AT>`: Query or Set Bluetooth LE OTA Device Name
+    --------------------------------------------------------------------------------------
+
+    Query Command
+    ^^^^^^^^^^^^^
+
+    **Function:**
+
+    Query the Bluetooth LE OTA device name.
+
+    **Command:**
+
+    ::
+
+        AT+BLEOTANAME?
+
+    **Response:**
+
+    ::
+
+        +BLEOTANAME:<device_name>
+        OK
+
+    Set Command
+    ^^^^^^^^^^^
+
+    **Function:**
+
+    Set the Bluetooth LE OTA device name.
+
+    **Command:**
+
+    ::
+
+        AT+BLEOTANAME=<device_name>
+
+    **Response:**
+
+    ::
+
+        OK
+
+    Parameter
+    ^^^^^^^^^^
+
+    - **<device_name>**: Bluetooth LE OTA device name. Maximum length: 29 bytes. The default name is "ESP-C919".
+
+    Notes
+    ^^^^^
+
+    - If you need to set the Bluetooth LE OTA device name, please set it before running :ref:`AT+BLEOTA=1 <cmd-BLEOTA>`. Otherwise, it will use the default name ``ESP-C919``.
+
+    Example
+    ^^^^^^^^
+
+    ::
+
+        AT+BLEOTANAME="NAME"
+        AT+BLEOTANAME?
+
+    .. _cmd-BLEOTA:
+
+    :ref:`AT+BLEOTA <BLE-AT>`: Initialize or Deinitialize Bluetooth LE OTA
+    ----------------------------------------------------------------------------
+
+    Query Command
+    ^^^^^^^^^^^^^
+
+    **Function:**
+
+    Query the Bluetooth LE OTA initialization status.
+
+    **Command:**
+
+    ::
+
+        AT+BLEOTA?
+
+    **Response:**
+
+    If Bluetooth LE OTA is not initialized, the response is:
+
+    ::
+
+        +BLEOTA:0
+
+        OK
+
+    If Bluetooth LE OTA is initialized, the response is:
+
+    ::
+
+        +BLEOTA:1
+
+        OK
+
+    Set Command
+    ^^^^^^^^^^^
+
+    **Function:**
+
+    Initialize or deinitialize Bluetooth LE OTA.
+
+    **Command:**
+
+    ::
+
+        AT+BLEOTA=<init>
+
+    **Response:**
+
+    ::
+
+        OK
+
+    Parameter
+    ^^^^^^^^^^
+
+    - **<init>**:
+
+       - 0: deinitialize Bluetooth LE OTA;
+       - 1: initialize Bluetooth LE OTA.
+
+    Notes
+    ^^^^^
+
+    - The default AT firmware does not enable this command. To use it, please refer to :doc:`../Compile_and_Develop/How_to_implement_BLE_OTA_update` to enable the configuration (and update the MTU to the recommended value 512 at the same time), then rebuild the firmware.
+    - If you need to set the Bluetooth LE OTA device name, please execute the :ref:`AT+BLEOTANAME <cmd-BLEOTANAME>` command before initializing with this command.
+    - After successful initialization, the device automatically starts advertising, waits for the peer APP to connect, and then receives the OTA firmware from the peer APP.
+    - After the firmware has been transferred and verified, the device automatically restarts.
+    - Please refer to :doc:`../Compile_and_Develop/How_to_implement_BLE_OTA_update` for the GATT services, peer APP sequence, and data packet format.
+
+    Example
+    ^^^^^^^^
+
+    ::
+
+        AT+BLEOTANAME="NAME"
+        AT+BLEOTA=1
