@@ -6,7 +6,17 @@
 
 from __future__ import print_function, unicode_literals
 
+import os
 import os.path
+import subprocess
+import sys
+
+docs_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, docs_dir)
+
+from at_extensions.idf_env import prepare_idf_env  # noqa: E402
+
+prepare_idf_env()
 
 #ESP_DOCS_PATH = os.environ['ESP_DOCS_PATH']
 
@@ -56,22 +66,24 @@ ESP32C61_DOCS = SPI_DOCS + SDIO_DOCS + BLE_DOCS
 
 ESP32S2_DOCS = []
 
-# format: {tag needed to include: documents to included}, tags are parsed from sdkconfig and peripheral_caps.h headers
+# format: {tag needed to include: documents to include}
+# Tags are chip names passed by build-docs -t <target> (e.g. esp32, esp32c3).
 conditional_include_dict = {
-                            'esp32':ESP32_DOCS,
-                            'esp32c2':ESP32C2_DOCS,
-                            'esp32c3':ESP32C3_DOCS,
-                            'esp32c5':ESP32C5_DOCS,
-                            'esp32c6':ESP32C6_DOCS,
-                            'esp32c61':ESP32C61_DOCS,
-                            'esp32s2':ESP32S2_DOCS
+                            'esp32': ESP32_DOCS,
+                            'esp32c2': ESP32C2_DOCS,
+                            'esp32c3': ESP32C3_DOCS,
+                            'esp32c5': ESP32C5_DOCS,
+                            'esp32c6': ESP32C6_DOCS,
+                            'esp32c61': ESP32C61_DOCS,
+                            'esp32s2': ESP32S2_DOCS,
                             }
 
 extensions += ['sphinx_copybutton',
                # Note: order is important here, events must
                # be registered by one extension before they can be
                # connected to another extension
-               'esp_docs.esp_extensions.dummy_build_system',
+               'at_extensions.idf_build_system',
+               'esp_docs.idf_extensions.gen_defines',
                'esp_docs.esp_extensions.run_doxygen',
                ]
 
