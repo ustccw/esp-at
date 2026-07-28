@@ -1,8 +1,15 @@
+.build_docs_script: &build_docs_script
+  - cd docs
+  - ./check_lang_folder_sync.sh
+  - ./check_doc_chars.py
+  - pip install -r requirements.txt
+  - build-docs -t $DOCTGT -bs $DOC_BUILDERS -l $DOCLANG build
+
 .build_docs_template:
   extends:
     - .rules:build:build_doc
   stage: build
-  image: $CI_DOCKER_REGISTRY/esp-idf-doc-env-v5.4:1-1
+  image: $IDF_IMAGE
   needs: []
   tags:
     - build_docs
@@ -13,25 +20,37 @@
       - docs/_build/*/*/latex/*
       - docs/_build/*/*/html/*
     expire_in: 6 mos
+  before_script:
+    # esp-at-doc-env images ship esp-idf at /opt/esp/idf. GitLab does not run
+    # the image entrypoint, so export IDF_PATH + toolchain here.
+    - . /opt/esp/idf/export.sh
   script:
-    - cd docs
-    - ./check_lang_folder_sync.sh
-    - ./check_doc_chars.py
-    - pip install -r requirements.txt
-    - build-docs -t $DOCTGT -bs $DOC_BUILDERS -l $DOCLANG build
-  parallel:
-    matrix:
-      - DOCLANG: ["en", "zh_CN"]
-        DOCTGT: ["esp32", "esp32c2", "esp32c3", "esp32c5", "esp32c6", "esp32c61", "esp32s2"]
+    - *build_docs_script
 
 build_docs_html:
   extends:
     - .build_docs_template
   variables:
     DOC_BUILDERS: "html"
+  parallel:
+    matrix:
+      - DOCLANG: ["en", "zh_CN"]
+        DOCTGT: ["esp32", "esp32c2", "esp32c3", "esp32c6", "esp32s2"]
+        IDF_IMAGE: $CI_REGISTRY/ci/images/esp-at-doc-env-v5.4:1
+      - DOCLANG: ["en", "zh_CN"]
+        DOCTGT: ["esp32c5", "esp32c61"]
+        IDF_IMAGE: $CI_REGISTRY/ci/images/esp-at-doc-env-v5.5:1
 
 build_docs_pdf:
   extends:
     - .build_docs_template
   variables:
     DOC_BUILDERS: "latex"
+  parallel:
+    matrix:
+      - DOCLANG: ["en", "zh_CN"]
+        DOCTGT: ["esp32", "esp32c2", "esp32c3", "esp32c6", "esp32s2"]
+        IDF_IMAGE: $CI_REGISTRY/ci/images/esp-at-doc-env-v5.4:1
+      - DOCLANG: ["en", "zh_CN"]
+        DOCTGT: ["esp32c5", "esp32c61"]
+        IDF_IMAGE: $CI_REGISTRY/ci/images/esp-at-doc-env-v5.5:1
