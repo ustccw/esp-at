@@ -11,6 +11,8 @@ This document describes how to customize Bluetooth LE services on your {IDF_TARG
 
 The Bluetooth LE services are defined as a multivariate array of GATT structures, and the array contains at least one primary service whose attribute type is defined as 0x2800. Each service always consists of a service definition and several characteristics. Each characteristic always consists of a value and optional descriptors. Please refer to Part Generic Attribute Profile (GATT) of `Bluetooth Core Specification <https://www.bluetooth.com/specifications/specs/core-specification-4-2>`_ for more information.
 
+ESP-AT uses the same ``gatts_data.csv`` format on all chips that support Bluetooth LE. The rules below describe which fields take effect on {IDF_TARGET_NAME}.
+
 .. _factory-gatts-intro:
 
 Bluetooth LE Service Source File
@@ -41,7 +43,7 @@ The ESP-AT project creates Bluetooth LE services based on its Bluetooth LE servi
      - 0x01
      - 1
      - 1
-     - 2
+     - 02
    * - 2
      - 16
      - 0xC300
@@ -66,7 +68,7 @@ The ESP-AT project creates Bluetooth LE services based on its Bluetooth LE servi
 
 Below are descriptions of the table above.
 
-- ``perm`` field describes the permission. Its definition in the ESP-AT project is as follows:
+- ``perm`` describes attribute permissions. When a row's ``perm`` takes effect (see the rules below), its definition in the ESP-AT project is as follows:
 
   .. code-block:: c
 
@@ -85,15 +87,23 @@ Below are descriptions of the table above.
     #define    ESP_GATT_PERM_READ_AUTHORIZATION    (1 << 9)   /* bit 9 -  0x0200 */
     #define    ESP_GATT_PERM_WRITE_AUTHORIZATION   (1 << 10)  /* bit 10 - 0x0400 */
 
-- The first line of table is the service definition with a UUID of ``0xA002``.
-- The second line is the declaration of a characteristic. UUID ``0x2803`` means the characteristic declaration. The value ``2`` sets the permission. The length of permission is 8 bits, and each bit represents permission for an operation. ``1`` indicates that the operation is supported, and ``0`` indicates not supported.
+- The first line of the table is the service definition. Its attribute type is ``0x2800`` (primary service), and its ``value`` ``A002`` is the 16-bit service UUID ``0xA002``.
+- The second line is the characteristic declaration. UUID ``0x2803`` identifies this row as a characteristic declaration.
+
+  - ``value``: characteristic properties of the **next** characteristic value attribute (the following row). It is one byte (8 bits). Each bit indicates whether a property is supported (``1``) or not (``0``).
+
+  .. only:: esp32c2 or esp32c5 or esp32c6 or esp32c61
+
+     On {IDF_TARGET_NAME}, ESP-AT translates this property value internally; you do not need to handle the difference.
+
+  For example, ``value`` ``02`` means the following characteristic has the READ property.
 
   .. list-table::
      :header-rows: 1
      :widths: 20 100
 
      * - Bit
-       - Permission
+       - Characteristic Property
      * - 0
        - BROADCAST
      * - 1
@@ -110,8 +120,126 @@ Below are descriptions of the table above.
        - AUTHENTICATION SIGNED WRITES
      * - 7
        - EXTENDED PROPERTIES
-- The third line defines a characteristic of the service. UUID of this line is the characteristic's UUID, and value is the characteristic's value.
+
+- The third line defines the characteristic value attribute of that characteristic. The ``uuid`` of this line is the characteristic UUID, and ``value`` is the characteristic's initial value.
 - The fourth line defines a descriptor of the characteristic (optional).
+- The ``value`` field is optional. If it is left empty, ESP-AT fills the attribute with all zeros during initialization. For example, in the default table, the characteristic ``0xC301`` row leaves ``value`` empty, so the characteristic is initialized to all zeros.
+
+Field Rules
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. only:: esp32 or esp32c3
+
+   - For the ``0x2803`` row, both ``perm`` and ``value`` take effect: ``perm`` is the permission of the declaration attribute itself (usually ``0x01``, readable), and ``value`` is the properties of the next characteristic.
+   - For the characteristic value row, ``perm`` takes effect. It must not conflict with the properties in the previous ``0x2803`` row. Properties advertise which operations the characteristic supports; ``perm`` controls whether the stack actually allows those operations. If properties claim READ-only but the value-row ``perm`` is WRITE-only, clients will fail when they try to read.
+
+     Typical mapping (encrypted or signed permission variants may be used when security is required):
+
+     .. list-table::
+        :header-rows: 1
+        :widths: 35 65
+
+        * - If properties include
+          - Characteristic value ``perm`` should include at least
+        * - READ
+          - READ (``0x01``), or a read-related encrypted/authorized variant
+        * - WRITE
+          - WRITE (``0x10``), or a write-related encrypted/authorized/signed variant
+        * - WRITE WITHOUT RESPONSE
+          - WRITE (``0x10``), or a write-related encrypted/authorized/signed variant
+        * - NOTIFY or INDICATE
+          - Usually READ on the characteristic value; you must add the CCCD (``0x2902``) yourself. Its ``perm`` is typically READ | WRITE (``0x11``).
+
+     You can combine properties. For example, ``0A`` (READ | WRITE) should be paired with characteristic value ``perm`` ``0x11`` (READ | WRITE).
+
+   - If the characteristic supports NOTIFY or INDICATE, add a ``0x2902`` row in the table. Other descriptors (such as ``0x2901``) are also added as defined, and each descriptor row's ``perm`` takes effect.
+
+.. only:: esp32c2 or esp32c5 or esp32c6 or esp32c61
+
+   - For the ``0x2803`` row, only ``value`` (properties of the next characteristic) takes effect. The ``perm`` of this row is **ignored and does not take effect**.
+   - For the characteristic value row, ``perm`` is **ignored and does not take effect**. If the optional 8th field described below is not provided, the characteristic capabilities come only from the ``value`` (properties) of the previous ``0x2803`` row.
+   - If the characteristic properties include NOTIFY or INDICATE, the CCCD (``0x2902``) is **added automatically**. Any ``0x2902`` row in ``gatts_data.csv`` is **skipped and not processed** (you may keep such rows for CSV compatibility; they simply do not take effect on {IDF_TARGET_NAME}).
+   - Other descriptors (such as ``0x2901``) are still added. If the optional 8th field described below is not provided, ``perm`` of **that descriptor row** takes effect.
+
+   **Optional 8th field**
+
+   On {IDF_TARGET_NAME}, **characteristic value rows** and **descriptor rows** may append an optional field after ``value``. The ``0x`` / ``0X`` prefix is optional. If you add this field on other rows (such as the service definition ``0x2800`` or the characteristic declaration ``0x2803``), it **does not take effect**.
+
+   1. **Characteristic value row**: the 8th field is a **32-bit** hexadecimal string that sets the full characteristic flag. If this field is present, the ``value`` (properties) of the **previous** ``0x2803`` row is **ignored and does not take effect**; this field takes precedence.
+
+      For example, the original row:
+
+      .. code-block:: none
+
+         2,16,0xC300,0x01,1,1,30
+
+      can also be written as:
+
+      .. code-block:: none
+
+         2,16,0xC300,0x01,1,1,30,0x00020000
+
+      or:
+
+      .. code-block:: none
+
+         2,16,0xC300,0x01,1,1,30,00020000
+
+      The field is defined as follows (bits can be combined with OR):
+
+      .. code-block:: c
+
+        #define BLE_GATT_CHR_F_BROADCAST                0x00000001
+        #define BLE_GATT_CHR_F_READ                     0x00000002
+        #define BLE_GATT_CHR_F_WRITE_NO_RSP             0x00000004
+        #define BLE_GATT_CHR_F_WRITE                    0x00000008
+        #define BLE_GATT_CHR_F_NOTIFY                   0x00000010
+        #define BLE_GATT_CHR_F_INDICATE                 0x00000020
+        #define BLE_GATT_CHR_F_AUTH_SIGN_WRITE          0x00000040
+        #define BLE_GATT_CHR_F_RELIABLE_WRITE           0x00000080
+        #define BLE_GATT_CHR_F_AUX_WRITE                0x00000100
+        #define BLE_GATT_CHR_F_READ_ENC                 0x00000200
+        #define BLE_GATT_CHR_F_READ_AUTHEN              0x00000400
+        #define BLE_GATT_CHR_F_READ_AUTHOR              0x00000800
+        #define BLE_GATT_CHR_F_WRITE_ENC                0x00001000
+        #define BLE_GATT_CHR_F_WRITE_AUTHEN             0x00002000
+        #define BLE_GATT_CHR_F_WRITE_AUTHOR             0x00004000
+        #define BLE_GATT_CHR_F_NOTIFY_INDICATE_ENC      0x00008000
+        #define BLE_GATT_CHR_F_NOTIFY_INDICATE_AUTHEN   0x00010000
+        #define BLE_GATT_CHR_F_NOTIFY_INDICATE_AUTHOR   0x00020000
+
+   2. **Descriptor row**: the 8th field is an **8-bit** hexadecimal string that sets the descriptor permission. If this field is present, ``perm`` of **this row** is **ignored and does not take effect**; this field takes precedence.
+
+      For example, the original row:
+
+      .. code-block:: none
+
+         3,16,0x2901,0x11,1,1,30
+
+      can also be written as:
+
+      .. code-block:: none
+
+         3,16,0x2901,0x11,1,1,30,0x80
+
+      or:
+
+      .. code-block:: none
+
+         3,16,0x2901,0x11,1,1,30,80
+
+      The field is defined as follows (bits can be combined with OR):
+
+      .. code-block:: c
+
+        #define BLE_ATT_F_READ             0x01
+        #define BLE_ATT_F_WRITE            0x02
+        #define BLE_ATT_F_READ_ENC         0x04
+        #define BLE_ATT_F_READ_AUTHEN      0x08
+        #define BLE_ATT_F_READ_AUTHOR      0x10
+        #define BLE_ATT_F_WRITE_ENC        0x20
+        #define BLE_ATT_F_WRITE_AUTHEN     0x40
+        #define BLE_ATT_F_WRITE_AUTHOR     0x80
 
 For more information about UUID, please refer to `Bluetooth Special Interest Group (SIG) Assigned Numbers <https://www.bluetooth.com/specifications/assigned-numbers/>`_.
 
@@ -162,6 +290,14 @@ You can define more than one service. For example, if you want to define three s
 
    In this example, we define a readable and writable characteristic with UUID 0xC300, and set its value to 0x30.
 
+   .. only:: esp32 or esp32c3
+
+      The declaration-row ``perm`` is ``0x01``. The characteristic-value-row ``perm`` is ``0x11`` (required to match READ | WRITE properties).
+
+   .. only:: esp32c2 or esp32c5 or esp32c6 or esp32c61
+
+      The declaration-row ``perm`` and the characteristic-value-row ``perm`` are ignored and do not take effect.
+
    .. list-table::
       :header-rows: 1
 
@@ -175,7 +311,7 @@ You can define more than one service. For example, if you want to define three s
       * - 32
         - 16
         - 0x2803
-        - 0x11
+        - 0x01
         - 1
         - 1
         - 0A
@@ -189,66 +325,110 @@ You can define more than one service. For example, if you want to define three s
 
 3. Add the characteristic descriptor (optional).
 
-   In this example, we add client characteristic configuration. Its value 0x0000 represents notifications and indications are disabled.
+   The characteristic in step 2 uses properties ``0A`` (READ | WRITE) and does **not** require a CCCD. The content below is a **separate optional illustration** for characteristics that support NOTIFY or INDICATE; it is not tied to the ``0A`` example above. If you need NOTIFY, set the ``0x2803`` properties accordingly (for example ``1A`` for READ | WRITE | NOTIFY).
 
-   .. list-table::
-      :header-rows: 1
+   .. only:: esp32 or esp32c3
 
-      * - index
-        - uuid_len
-        - uuid
-        - perm
-        - val_max_len
-        - val_cur_len
-        - value
-      * - 34
-        - 16
-        - 0x2902
-        - 0x11
-        - 2
-        - 2
-        - 0000
+      If the characteristic supports NOTIFY or INDICATE, add client characteristic configuration (``0x2902``) yourself. The example below sets ``value`` to ``0000`` (notifications and indications disabled).
 
-After the above steps, the customized Bluetooth LE service has been defined as follows.
+      Example of a CCCD row:
 
-.. list-table::
-   :header-rows: 1
+      .. list-table::
+         :header-rows: 1
 
-   * - index
-     - uuid_len
-     - uuid
-     - perm
-     - val_max_len
-     - val_cur_len
-     - value
-   * - 31
-     - 16
-     - 0x2800
-     - 0x01
-     - 2
-     - 2
-     - FF01
-   * - 32
-     - 16
-     - 0x2803
-     - 0x11
-     - 1
-     - 1
-     - 0A
-   * - 33
-     - 16
-     - 0xC300
-     - 0x11
-     - 1
-     - 1
-     - 30
-   * - 34
-     - 16
-     - 0x2902
-     - 0x11
-     - 2
-     - 2
-     - 0000
+         * - index
+           - uuid_len
+           - uuid
+           - perm
+           - val_max_len
+           - val_cur_len
+           - value
+         * - 34
+           - 16
+           - 0x2902
+           - 0x11
+           - 2
+           - 2
+           - 0000
+
+      After the above steps, the customized Bluetooth LE service can be defined as follows. The table combines the service and characteristic from steps 1–2 with the optional CCCD illustration from step 3. For the ``0A`` (READ | WRITE) characteristic alone, omit the ``0x2902`` row.
+
+      .. list-table::
+         :header-rows: 1
+
+         * - index
+           - uuid_len
+           - uuid
+           - perm
+           - val_max_len
+           - val_cur_len
+           - value
+         * - 31
+           - 16
+           - 0x2800
+           - 0x01
+           - 2
+           - 2
+           - FF01
+         * - 32
+           - 16
+           - 0x2803
+           - 0x01
+           - 1
+           - 1
+           - 0A
+         * - 33
+           - 16
+           - 0xC300
+           - 0x11
+           - 1
+           - 1
+           - 30
+         * - 34
+           - 16
+           - 0x2902
+           - 0x11
+           - 2
+           - 2
+           - 0000
+
+   .. only:: esp32c2 or esp32c5 or esp32c6 or esp32c61
+
+      If properties include NOTIFY or INDICATE, CCCD is added automatically. You do not need to add a ``0x2902`` row; if the row exists in the CSV, it is skipped and does not take effect. Other descriptors (not ``0x2902``) are still added, and that row's ``perm`` takes effect.
+
+      After the above steps, the customized Bluetooth LE service can be defined as follows (the ``0A`` READ | WRITE example; no ``0x2902`` row is needed):
+
+      .. list-table::
+         :header-rows: 1
+
+         * - index
+           - uuid_len
+           - uuid
+           - perm
+           - val_max_len
+           - val_cur_len
+           - value
+         * - 31
+           - 16
+           - 0x2800
+           - 0x01
+           - 2
+           - 2
+           - FF01
+         * - 32
+           - 16
+           - 0x2803
+           - 0x01
+           - 1
+           - 1
+           - 0A
+         * - 33
+           - 16
+           - 0xC300
+           - 0x11
+           - 1
+           - 1
+           - 30
 
 Please modify the GATTS configurations according to your own needs and generate ``mfg_nvs.bin`` file.
 
