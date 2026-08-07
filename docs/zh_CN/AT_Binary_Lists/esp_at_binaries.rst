@@ -64,7 +64,16 @@
   ESP32-WROOM-32 系列
   ^^^^^^^^^^^^^^^^^^^^^^
 
-  - v4.1.1.0 `ESP32-WROOM-32-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-WROOM-32/ESP32-WROOM-32-AT-V4.1.1.0.zip>`__ （推荐）
+  .. hint::
+
+    - 如需测试，请从 :doc:`GitHub Actions 里下载 <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>` ``esp32-wroom-at`` 固件，或者 :doc:`本地编译 ESP-AT 工程 <../Compile_and_Develop/How_to_clone_project_and_compile_it>`。
+    - 如需量产，请点击下面已发布的版本，填写 AT 固件申请表，获取适用于 {IDF_TARGET_NAME} 系列芯片的 AT 固件。
+
+  **已发布的版本：**
+
+  - `v4.2.0.0 <https://www.espressif.com/zh-hans/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-WROOM-32&version=v4.2.0.0>`__ （推荐）
+
+  - v4.1.1.0 `ESP32-WROOM-32-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-WROOM-32/ESP32-WROOM-32-AT-V4.1.1.0.zip>`__
   - v4.1.0.0 `ESP32-WROOM-32-AT-V4.1.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-WROOM-32/ESP32-WROOM-32-AT-V4.1.0.0.zip>`__
   - v3.4.0.0 `ESP32-WROOM-32-AT-V3.4.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-WROOM-32/ESP32-WROOM-32-AT-V3.4.0.0.zip>`__
   - v3.2.1.0 `ESP32-WROOM-32-AT-V3.2.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-WROOM-32/ESP32-WROOM-32-AT-V3.2.1.0.zip>`__
@@ -84,7 +93,16 @@
   ESP32-MINI-1 系列
   ^^^^^^^^^^^^^^^^^^^
 
-  - v4.1.1.0 `ESP32-MINI-1-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-MINI-1/ESP32-MINI-1-AT-V4.1.1.0.zip>`__ （推荐）
+  .. hint::
+
+    - 如需测试，请从 :doc:`GitHub Actions 里下载 <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>` ``esp32-mini-1-at`` 固件，或者 :doc:`本地编译 ESP-AT 工程 <../Compile_and_Develop/How_to_clone_project_and_compile_it>`。
+    - 如需量产，请点击下面已发布的版本，填写 AT 固件申请表，获取适用于 {IDF_TARGET_NAME} 系列芯片的 AT 固件。
+
+  **已发布的版本：**
+
+  - `v4.2.0.0 <https://www.espressif.com/zh-hans/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-MINI-1&version=v4.2.0.0>`__ （推荐）
+
+  - v4.1.1.0 `ESP32-MINI-1-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-MINI-1/ESP32-MINI-1-AT-V4.1.1.0.zip>`__
   - v4.1.0.0 `ESP32-MINI-1-AT-V4.1.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-MINI-1/ESP32-MINI-1-AT-V4.1.0.0.zip>`__
   - v3.4.0.0 `ESP32-MINI-1-AT-V3.4.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-MINI-1/ESP32-MINI-1-AT-V3.4.0.0.zip>`__
   - v3.2.1.0 `ESP32-MINI-1-AT-V3.2.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-MINI-1/ESP32-MINI-1-AT-V3.2.1.0.zip>`__
@@ -112,7 +130,16 @@
   ESP32-PICO 系列
   ^^^^^^^^^^^^^^^^^
 
-  - v4.1.1.0 `ESP32-PICO-D4-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-PICO-D4/ESP32-PICO-D4-AT-V4.1.1.0.zip>`__ （推荐）
+  .. hint::
+
+    - 如需测试，请从 :doc:`GitHub Actions 里下载 <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>` ``esp32-pico-d4-at`` 固件，或者 :doc:`本地编译 ESP-AT 工程 <../Compile_and_Develop/How_to_clone_project_and_compile_it>`。
+    - 如需量产，请点击下面已发布的版本，填写 AT 固件申请表，获取适用于 {IDF_TARGET_NAME} 系列芯片的 AT 固件。
+
+  **已发布的版本：**
+
+  - `v4.2.0.0 <https://www.espressif.com/zh-hans/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-PICO-D4&version=v4.2.0.0>`__ （推荐）
+
+  - v4.1.1.0 `ESP32-PICO-D4-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-PICO-D4/ESP32-PICO-D4-AT-V4.1.1.0.zip>`__
   - v4.1.0.0 `ESP32-PICO-D4-AT-V4.1.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-PICO-D4/ESP32-PICO-D4-AT-V4.1.0.0.zip>`__
   - v3.4.0.0 `ESP32-PICO-D4-AT-V3.4.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-PICO-D4/ESP32-PICO-D4-AT-V3.4.0.0.zip>`__
   - v3.2.1.0 `ESP32-PICO-D4-AT-V3.2.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-PICO-D4/ESP32-PICO-D4-AT-V3.2.1.0.zip>`__
@@ -127,7 +154,16 @@
   ESP32-SOLO 系列
   ^^^^^^^^^^^^^^^^^
 
-  - v4.1.1.0 `ESP32-SOLO-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-SOLO/ESP32-SOLO-AT-V4.1.1.0.zip>`__ （推荐）
+  .. hint::
+
+    - 如需测试，请从 :doc:`GitHub Actions 里下载 <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>` ``esp32-solo-1-at`` 固件，或者 :doc:`本地编译 ESP-AT 工程 <../Compile_and_Develop/How_to_clone_project_and_compile_it>`。
+    - 如需量产，请点击下面已发布的版本，填写 AT 固件申请表，获取适用于 {IDF_TARGET_NAME} 系列芯片的 AT 固件。
+
+  **已发布的版本：**
+
+  - `v4.2.0.0 <https://www.espressif.com/zh-hans/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-SOLO&version=v4.2.0.0>`__ （推荐）
+
+  - v4.1.1.0 `ESP32-SOLO-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-SOLO/ESP32-SOLO-AT-V4.1.1.0.zip>`__
   - v4.1.0.0 `ESP32-SOLO-AT-V4.1.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-SOLO/ESP32-SOLO-AT-V4.1.0.0.zip>`__
   - v3.4.0.0 `ESP32-SOLO-AT-V3.4.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-SOLO/ESP32-SOLO-AT-V3.4.0.0.zip>`__
   - v3.2.1.0 `ESP32-SOLO-AT-V3.2.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-SOLO/ESP32-SOLO-AT-V3.2.1.0.zip>`__
@@ -160,7 +196,16 @@
 
   下面固件仅适用于 {IDF_TARGET_NAME} ECO4 (Rev v2.0) 系列芯片。
 
-  - v4.1.1.0 `ESP32-C2-4MB-G2-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-4MB-G2-AT-V4.1.1.0.zip>`__ （推荐）
+  .. hint::
+
+    - 如需测试，请从 :doc:`GitHub Actions 里下载 <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>` ``esp32c2-4MB-g2-at`` 固件，或者 :doc:`本地编译 ESP-AT 工程 <../Compile_and_Develop/How_to_clone_project_and_compile_it>`。
+    - 如需量产，请点击下面已发布的版本，填写 AT 固件申请表，获取适用于 {IDF_TARGET_NAME} 系列芯片的 AT 固件。
+
+  **已发布的版本：**
+
+  - `v4.2.0.0 <https://www.espressif.com/zh-hans/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-C2-4mb-g2&version=v4.2.0.0>`__ （推荐）
+
+  - v4.1.1.0 `ESP32-C2-4MB-G2-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-4MB-G2-AT-V4.1.1.0.zip>`__
   - v4.1.0.0 `ESP32-C2-4MB-G2-AT-V4.1.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-4MB-G2-AT-V4.1.0.0.zip>`__
   - v3.3.1.0 `ESP32-C2-4MB-G2-AT-V3.3.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-4MB-G2-AT-V3.3.1.0.zip>`__
 
@@ -171,7 +216,16 @@
 
   下面固件适用于 {IDF_TARGET_NAME} ECO1 (Rev v1.0) ~ ECO4 (Rev v2.0) 系列芯片（包括 ECO1 和 ECO4）。
 
-  - v4.1.1.0 `ESP32-C2-2MB-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-2MB-AT-V4.1.1.0.zip>`__ （推荐）
+  .. hint::
+
+    - 如需测试，请从 :doc:`GitHub Actions 里下载 <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>` ``esp32c2-2MB-at`` 固件，或者 :doc:`本地编译 ESP-AT 工程 <../Compile_and_Develop/How_to_clone_project_and_compile_it>`。
+    - 如需量产，请点击下面已发布的版本，填写 AT 固件申请表，获取适用于 {IDF_TARGET_NAME} 系列芯片的 AT 固件。
+
+  **已发布的版本：**
+
+  - `v4.2.0.0 <https://www.espressif.com/zh-hans/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-C2-2mb&version=v4.2.0.0>`__ （推荐）
+
+  - v4.1.1.0 `ESP32-C2-2MB-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-2MB-AT-V4.1.1.0.zip>`__
   - v4.1.0.0 `ESP32-C2-2MB-AT-V4.1.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-2MB-AT-V4.1.0.0.zip>`__
 
   下面固件适用于 {IDF_TARGET_NAME} ECO1 (Rev v1.0) 和 ECO2 (Rev v1.1) 系列芯片。
@@ -190,7 +244,16 @@
 
   下面固件适用于 {IDF_TARGET_NAME} ECO1 (Rev v1.0) ~ ECO4 (Rev v2.0) 系列芯片（包括 ECO1 和 ECO4）。
 
-  - v4.1.1.0 `ESP32-C2-4MB-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-4MB-AT-V4.1.1.0.zip>`__ （推荐）
+  .. hint::
+
+    - 如需测试，请从 :doc:`GitHub Actions 里下载 <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>` ``esp32c2-4MB-at`` 固件，或者 :doc:`本地编译 ESP-AT 工程 <../Compile_and_Develop/How_to_clone_project_and_compile_it>`。
+    - 如需量产，请点击下面已发布的版本，填写 AT 固件申请表，获取适用于 {IDF_TARGET_NAME} 系列芯片的 AT 固件。
+
+  **已发布的版本：**
+
+  - `v4.2.0.0 <https://www.espressif.com/zh-hans/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-C2-4mb&version=v4.2.0.0>`__ （推荐）
+
+  - v4.1.1.0 `ESP32-C2-4MB-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-4MB-AT-V4.1.1.0.zip>`__
   - v4.1.0.0 `ESP32-C2-4MB-AT-V4.1.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-4MB-AT-V4.1.0.0.zip>`__
 
   下面固件适用于 {IDF_TARGET_NAME} ECO1 (Rev v1.0) 和 ECO2 (Rev v1.1) 系列芯片。
@@ -210,7 +273,16 @@
 
   下面固件适用于 {IDF_TARGET_NAME} ECO0 (Rev v0.0) ~ ECO7 (Rev v1.1) 系列芯片（包括 ECO0 和 ECO7）。
 
-  - v4.1.1.0 `ESP32-C3-MINI-1-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c3/ESP32-C3-MINI-1-AT-V4.1.1.0.zip>`__ （推荐）
+  .. hint::
+
+    - 如需测试，请从 :doc:`GitHub Actions 里下载 <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>` ``esp32c3-mini-1-at`` 固件，或者 :doc:`本地编译 ESP-AT 工程 <../Compile_and_Develop/How_to_clone_project_and_compile_it>`。
+    - 如需量产，请点击下面已发布的版本，填写 AT 固件申请表，获取适用于 {IDF_TARGET_NAME} 系列芯片的 AT 固件。
+
+  **已发布的版本：**
+
+  - `v4.2.0.0 <https://www.espressif.com/zh-hans/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-C3-MINI-1&version=v4.2.0.0>`__ （推荐）
+
+  - v4.1.1.0 `ESP32-C3-MINI-1-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c3/ESP32-C3-MINI-1-AT-V4.1.1.0.zip>`__
   - v4.1.0.0 `ESP32-C3-MINI-1-AT-V4.1.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c3/ESP32-C3-MINI-1-AT-V4.1.0.0.zip>`__
   - v3.3.0.0 `ESP32-C3-MINI-1-AT-V3.3.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c3/ESP32-C3-MINI-1-AT-V3.3.0.0.zip>`__
 
@@ -251,7 +323,16 @@
   ESP32-C6-4MB 系列
   ^^^^^^^^^^^^^^^^^^^^^^
 
-  - v4.1.1.0 `ESP32-C6-4MB-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c6/ESP32-C6-4MB-AT-V4.1.1.0.zip>`__ （推荐）
+  .. hint::
+
+    - 如需测试，请从 :doc:`GitHub Actions 里下载 <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>` ``esp32c6-4MB-at`` 固件，或者 :doc:`本地编译 ESP-AT 工程 <../Compile_and_Develop/How_to_clone_project_and_compile_it>`。
+    - 如需量产，请点击下面已发布的版本，填写 AT 固件申请表，获取适用于 {IDF_TARGET_NAME} 系列芯片的 AT 固件。
+
+  **已发布的版本：**
+
+  - `v4.2.0.0 <https://www.espressif.com/zh-hans/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-C6-4mb&version=v4.2.0.0>`__ （推荐）
+
+  - v4.1.1.0 `ESP32-C6-4MB-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c6/ESP32-C6-4MB-AT-V4.1.1.0.zip>`__
   - v4.1.0.0 `ESP32-C6-4MB-AT-V4.1.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c6/ESP32-C6-4MB-AT-V4.1.0.0.zip>`__
   - v4.0.0.0 `ESP32-C6-4MB-AT-V4.0.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c6/ESP32-C6-4MB-AT-V4.0.0.0.zip>`__
 
@@ -283,7 +364,16 @@
   ESP32-S2-MINI 系列
   ^^^^^^^^^^^^^^^^^^^^^^
 
-  - v4.1.1.0 `ESP32-S2-MINI-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32s2/ESP32-S2-MINI/ESP32-S2-MINI-AT-V4.1.1.0.zip>`__ （推荐）
+  .. hint::
+
+    - 如需测试，请从 :doc:`GitHub Actions 里下载 <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>` ``esp32s2-mini-at`` 固件，或者 :doc:`本地编译 ESP-AT 工程 <../Compile_and_Develop/How_to_clone_project_and_compile_it>`。
+    - 如需量产，请点击下面已发布的版本，填写 AT 固件申请表，获取适用于 {IDF_TARGET_NAME} 系列芯片的 AT 固件。
+
+  **已发布的版本：**
+
+  - `v4.2.0.0 <https://www.espressif.com/zh-hans/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-S2-MINI&version=v4.2.0.0>`__ （推荐）
+
+  - v4.1.1.0 `ESP32-S2-MINI-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32s2/ESP32-S2-MINI/ESP32-S2-MINI-AT-V4.1.1.0.zip>`__
   - v3.4.0.0 `ESP32-S2-MINI-AT-V3.4.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32s2/ESP32-S2-MINI/ESP32-S2-MINI-AT-V3.4.0.0.zip>`__
 
   .. _at-release-subscription:
@@ -602,9 +692,9 @@ AT 发布固件差异
       - |icon-orange-check|
     * - Wi-Fi Enterprise
       - |icon-orange-check|
+      - |icon-green-check|
       - |icon-orange-check|
-      - |icon-orange-check|
-      - |icon-orange-check|
+      - |icon-green-check|
       - |icon-red-cross|
     * - WEB server
       - |icon-orange-check|

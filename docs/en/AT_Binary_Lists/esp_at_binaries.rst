@@ -64,7 +64,16 @@ Introduction
   ESP32-WROOM-32 Series
   ^^^^^^^^^^^^^^^^^^^^^^
 
-  - v4.1.1.0 `ESP32-WROOM-32-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-WROOM-32/ESP32-WROOM-32-AT-V4.1.1.0.zip>`__ (Recommended)
+  .. hint::
+
+    - For testing purposes, you may download the ``esp32-wroom-at`` firmware from :doc:`GitHub Actions <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>`, or :doc:`compile the ESP-AT project locally <../Compile_and_Develop/How_to_clone_project_and_compile_it>`.
+    - For production use, please click on the released version below, fill out the AT Firmware Application form, and obtain the AT firmware suitable for the {IDF_TARGET_NAME} series chips.
+
+  **Released version:**
+
+  - `v4.2.0.0 <https://www.espressif.com/en/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-WROOM-32&version=v4.2.0.0>`__ (Recommended)
+
+  - v4.1.1.0 `ESP32-WROOM-32-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-WROOM-32/ESP32-WROOM-32-AT-V4.1.1.0.zip>`__
   - v4.1.0.0 `ESP32-WROOM-32-AT-V4.1.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-WROOM-32/ESP32-WROOM-32-AT-V4.1.0.0.zip>`__
   - v3.4.0.0 `ESP32-WROOM-32-AT-V3.4.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-WROOM-32/ESP32-WROOM-32-AT-V3.4.0.0.zip>`__
   - v3.2.1.0 `ESP32-WROOM-32-AT-V3.2.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-WROOM-32/ESP32-WROOM-32-AT-V3.2.1.0.zip>`__
@@ -84,7 +93,16 @@ Introduction
   ESP32-MINI-1 Series
   ^^^^^^^^^^^^^^^^^^^
 
-  - v4.1.1.0 `ESP32-MINI-1-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-MINI-1/ESP32-MINI-1-AT-V4.1.1.0.zip>`__ (Recommended)
+  .. hint::
+
+    - For testing purposes, you may download the ``esp32-mini-1-at`` firmware from :doc:`GitHub Actions <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>`, or :doc:`compile the ESP-AT project locally <../Compile_and_Develop/How_to_clone_project_and_compile_it>`.
+    - For production use, please click on the released version below, fill out the AT Firmware Application form, and obtain the AT firmware suitable for the {IDF_TARGET_NAME} series chips.
+
+  **Released version:**
+
+  - `v4.2.0.0 <https://www.espressif.com/en/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-MINI-1&version=v4.2.0.0>`__ (Recommended)
+
+  - v4.1.1.0 `ESP32-MINI-1-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-MINI-1/ESP32-MINI-1-AT-V4.1.1.0.zip>`__
   - v4.1.0.0 `ESP32-MINI-1-AT-V4.1.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-MINI-1/ESP32-MINI-1-AT-V4.1.0.0.zip>`__
   - v3.4.0.0 `ESP32-MINI-1-AT-V3.4.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-MINI-1/ESP32-MINI-1-AT-V3.4.0.0.zip>`__
   - v3.2.1.0 `ESP32-MINI-1-AT-V3.2.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-MINI-1/ESP32-MINI-1-AT-V3.2.1.0.zip>`__
@@ -112,7 +130,16 @@ Introduction
   ESP32-PICO Series
   ^^^^^^^^^^^^^^^^^
 
-  - v4.1.1.0 `ESP32-PICO-D4-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-PICO-D4/ESP32-PICO-D4-AT-V4.1.1.0.zip>`__ (Recommended)
+  .. hint::
+
+    - For testing purposes, you may download the ``esp32-pico-d4-at`` firmware from :doc:`GitHub Actions <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>`, or :doc:`compile the ESP-AT project locally <../Compile_and_Develop/How_to_clone_project_and_compile_it>`.
+    - For production use, please click on the released version below, fill out the AT Firmware Application form, and obtain the AT firmware suitable for the {IDF_TARGET_NAME} series chips.
+
+  **Released version:**
+
+  - `v4.2.0.0 <https://www.espressif.com/en/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-PICO-D4&version=v4.2.0.0>`__ (Recommended)
+
+  - v4.1.1.0 `ESP32-PICO-D4-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-PICO-D4/ESP32-PICO-D4-AT-V4.1.1.0.zip>`__
   - v4.1.0.0 `ESP32-PICO-D4-AT-V4.1.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-PICO-D4/ESP32-PICO-D4-AT-V4.1.0.0.zip>`__
   - v3.4.0.0 `ESP32-PICO-D4-AT-V3.4.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-PICO-D4/ESP32-PICO-D4-AT-V3.4.0.0.zip>`__
   - v3.2.1.0 `ESP32-PICO-D4-AT-V3.2.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-PICO-D4/ESP32-PICO-D4-AT-V3.2.1.0.zip>`__
@@ -127,7 +154,16 @@ Introduction
   ESP32-SOLO Series
   ^^^^^^^^^^^^^^^^^
 
-  - v4.1.1.0 `ESP32-SOLO-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-SOLO/ESP32-SOLO-AT-V4.1.1.0.zip>`__ (Recommended)
+  .. hint::
+
+    - For testing purposes, you may download the ``esp32-solo-1-at`` firmware from :doc:`GitHub Actions <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>`, or :doc:`compile the ESP-AT project locally <../Compile_and_Develop/How_to_clone_project_and_compile_it>`.
+    - For production use, please click on the released version below, fill out the AT Firmware Application form, and obtain the AT firmware suitable for the {IDF_TARGET_NAME} series chips.
+
+  **Released version:**
+
+  - `v4.2.0.0 <https://www.espressif.com/en/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-SOLO&version=v4.2.0.0>`__ (Recommended)
+
+  - v4.1.1.0 `ESP32-SOLO-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-SOLO/ESP32-SOLO-AT-V4.1.1.0.zip>`__
   - v4.1.0.0 `ESP32-SOLO-AT-V4.1.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-SOLO/ESP32-SOLO-AT-V4.1.0.0.zip>`__
   - v3.4.0.0 `ESP32-SOLO-AT-V3.4.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-SOLO/ESP32-SOLO-AT-V3.4.0.0.zip>`__
   - v3.2.1.0 `ESP32-SOLO-AT-V3.2.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-SOLO/ESP32-SOLO-AT-V3.2.1.0.zip>`__
@@ -160,7 +196,16 @@ Introduction
 
   The firmware versions below are compatible with {IDF_TARGET_NAME} chip series ECO4 (Rev v2.0) only.
 
-  - v4.1.1.0 `ESP32-C2-4MB-G2-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-4MB-G2-AT-V4.1.1.0.zip>`__ (Recommended)
+  .. hint::
+
+    - For testing purposes, you may download the ``esp32c2-4MB-g2-at`` firmware from :doc:`GitHub Actions <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>`, or :doc:`compile the ESP-AT project locally <../Compile_and_Develop/How_to_clone_project_and_compile_it>`.
+    - For production use, please click on the released version below, fill out the AT Firmware Application form, and obtain the AT firmware suitable for the {IDF_TARGET_NAME} series chips.
+
+  **Released version:**
+
+  - `v4.2.0.0 <https://www.espressif.com/en/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-C2-4mb-g2&version=v4.2.0.0>`__ (Recommended)
+
+  - v4.1.1.0 `ESP32-C2-4MB-G2-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-4MB-G2-AT-V4.1.1.0.zip>`__
   - v4.1.0.0 `ESP32-C2-4MB-G2-AT-V4.1.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-4MB-G2-AT-V4.1.0.0.zip>`__
   - v3.3.1.0 `ESP32-C2-4MB-G2-AT-V3.3.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-4MB-G2-AT-V3.3.1.0.zip>`__
 
@@ -171,7 +216,16 @@ Introduction
 
   The firmware versions below are compatible with {IDF_TARGET_NAME} chip series from ECO1 (Rev v1.0) to ECO4 (Rev v2.0), inclusive of both ECO1 and ECO4 variants.
 
-  - v4.1.1.0 `ESP32-C2-2MB-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-2MB-AT-V4.1.1.0.zip>`__ (Recommended)
+  .. hint::
+
+    - For testing purposes, you may download the ``esp32c2-2MB-at`` firmware from :doc:`GitHub Actions <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>`, or :doc:`compile the ESP-AT project locally <../Compile_and_Develop/How_to_clone_project_and_compile_it>`.
+    - For production use, please click on the released version below, fill out the AT Firmware Application form, and obtain the AT firmware suitable for the {IDF_TARGET_NAME} series chips.
+
+  **Released version:**
+
+  - `v4.2.0.0 <https://www.espressif.com/en/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-C2-2mb&version=v4.2.0.0>`__ (Recommended)
+
+  - v4.1.1.0 `ESP32-C2-2MB-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-2MB-AT-V4.1.1.0.zip>`__
   - v4.1.0.0 `ESP32-C2-2MB-AT-V4.1.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-2MB-AT-V4.1.0.0.zip>`__
 
   The firmware versions below are compatible with {IDF_TARGET_NAME} chip series ECO1 (Rev v1.0) and ECO2 (Rev v1.1) only.
@@ -190,7 +244,16 @@ Introduction
 
   The firmware versions below are compatible with {IDF_TARGET_NAME} chip series from ECO1 (Rev v1.0) to ECO4 (Rev v2.0), inclusive of both ECO1 and ECO4 variants.
 
-  - v4.1.1.0 `ESP32-C2-4MB-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-4MB-AT-V4.1.1.0.zip>`__ (Recommended)
+  .. hint::
+
+    - For testing purposes, you may download the ``esp32c2-4MB-at`` firmware from :doc:`GitHub Actions <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>`, or :doc:`compile the ESP-AT project locally <../Compile_and_Develop/How_to_clone_project_and_compile_it>`.
+    - For production use, please click on the released version below, fill out the AT Firmware Application form, and obtain the AT firmware suitable for the {IDF_TARGET_NAME} series chips.
+
+  **Released version:**
+
+  - `v4.2.0.0 <https://www.espressif.com/en/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-C2-4mb&version=v4.2.0.0>`__ (Recommended)
+
+  - v4.1.1.0 `ESP32-C2-4MB-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-4MB-AT-V4.1.1.0.zip>`__
   - v4.1.0.0 `ESP32-C2-4MB-AT-V4.1.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c2/ESP32-C2-4MB-AT-V4.1.0.0.zip>`__
 
   The firmware versions below are compatible with {IDF_TARGET_NAME} chip series ECO1 (Rev v1.0) and ECO2 (Rev v1.1) only.
@@ -210,7 +273,16 @@ Introduction
 
   The firmware versions below are compatible with {IDF_TARGET_NAME} chip series from ECO0 (Rev v0.0) to ECO7 (Rev v1.1), inclusive of both ECO0 and ECO7 variants.
 
-  - v4.1.1.0 `ESP32-C3-MINI-1-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c3/ESP32-C3-MINI-1-AT-V4.1.1.0.zip>`__ (Recommended)
+  .. hint::
+
+    - For testing purposes, you may download the ``esp32c3-mini-1-at`` firmware from :doc:`GitHub Actions <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>`, or :doc:`compile the ESP-AT project locally <../Compile_and_Develop/How_to_clone_project_and_compile_it>`.
+    - For production use, please click on the released version below, fill out the AT Firmware Application form, and obtain the AT firmware suitable for the {IDF_TARGET_NAME} series chips.
+
+  **Released version:**
+
+  - `v4.2.0.0 <https://www.espressif.com/en/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-C3-MINI-1&version=v4.2.0.0>`__ (Recommended)
+
+  - v4.1.1.0 `ESP32-C3-MINI-1-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c3/ESP32-C3-MINI-1-AT-V4.1.1.0.zip>`__
   - v4.1.0.0 `ESP32-C3-MINI-1-AT-V4.1.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c3/ESP32-C3-MINI-1-AT-V4.1.0.0.zip>`__
   - v3.3.0.0 `ESP32-C3-MINI-1-AT-V3.3.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c3/ESP32-C3-MINI-1-AT-V3.3.0.0.zip>`__
 
@@ -251,7 +323,16 @@ Introduction
   ESP32-C6-4MB Series
   ^^^^^^^^^^^^^^^^^^^
 
-  - v4.1.1.0 `ESP32-C6-4MB-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c6/ESP32-C6-4MB-AT-V4.1.1.0.zip>`__ (Recommended)
+  .. hint::
+
+    - For testing purposes, you may download the ``esp32c6-4MB-at`` firmware from :doc:`GitHub Actions <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>`, or :doc:`compile the ESP-AT project locally <../Compile_and_Develop/How_to_clone_project_and_compile_it>`.
+    - For production use, please click on the released version below, fill out the AT Firmware Application form, and obtain the AT firmware suitable for the {IDF_TARGET_NAME} series chips.
+
+  **Released version:**
+
+  - `v4.2.0.0 <https://www.espressif.com/en/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-C6-4mb&version=v4.2.0.0>`__ (Recommended)
+
+  - v4.1.1.0 `ESP32-C6-4MB-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c6/ESP32-C6-4MB-AT-V4.1.1.0.zip>`__
   - v4.1.0.0 `ESP32-C6-4MB-AT-V4.1.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c6/ESP32-C6-4MB-AT-V4.1.0.0.zip>`__
   - v4.0.0.0 `ESP32-C6-4MB-AT-V4.0.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32c6/ESP32-C6-4MB-AT-V4.0.0.0.zip>`__
 
@@ -283,7 +364,16 @@ Introduction
   ESP32-S2-MINI Series
   ^^^^^^^^^^^^^^^^^^^^
 
-  - v4.1.1.0 `ESP32-S2-MINI-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32s2/ESP32-S2-MINI/ESP32-S2-MINI-AT-V4.1.1.0.zip>`__ (Recommended)
+  .. hint::
+
+    - For testing purposes, you may download the ``esp32s2-mini-at`` firmware from :doc:`GitHub Actions <../Compile_and_Develop/How_to_download_the_latest_temporary_version_of_AT_from_github>`, or :doc:`compile the ESP-AT project locally <../Compile_and_Develop/How_to_clone_project_and_compile_it>`.
+    - For production use, please click on the released version below, fill out the AT Firmware Application form, and obtain the AT firmware suitable for the {IDF_TARGET_NAME} series chips.
+
+  **Released version:**
+
+  - `v4.2.0.0 <https://www.espressif.com/en/contact-us/at-firmware-application?chip={IDF_TARGET_NAME}&type=ESP32-S2-MINI&version=v4.2.0.0>`__ (Recommended)
+
+  - v4.1.1.0 `ESP32-S2-MINI-AT-V4.1.1.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32s2/ESP32-S2-MINI/ESP32-S2-MINI-AT-V4.1.1.0.zip>`__
   - v3.4.0.0 `ESP32-S2-MINI-AT-V3.4.0.0.zip <https://dl.espressif.com/esp-at/firmwares/esp32s2/ESP32-S2-MINI/ESP32-S2-MINI-AT-V3.4.0.0.zip>`__
 
   .. _at-release-subscription:
@@ -602,9 +692,9 @@ The table lists which command set is supported by default in the official AT fir
       - |icon-orange-check|
     * - Wi-Fi Enterprise
       - |icon-orange-check|
+      - |icon-green-check|
       - |icon-orange-check|
-      - |icon-orange-check|
-      - |icon-orange-check|
+      - |icon-green-check|
       - |icon-red-cross|
     * - WEB server
       - |icon-orange-check|

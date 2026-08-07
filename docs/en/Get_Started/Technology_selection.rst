@@ -44,7 +44,7 @@ The table below lists the Espressif chips that are currently supported or planne
     - Description
   * - ESP32-C6
     - **Wi-Fi 6** + BLE 5.0
-    - `v4.1.1.0 <https://github.com/espressif/esp-at/releases/tag/v4.1.1.0>`_
+    - `v4.2.0.0 <https://github.com/espressif/esp-at/releases/tag/v4.2.0.0>`_
     -
   * - ESP32-C5
     - **5G Wi-Fi** + **Wi-Fi 6** + BLE 5.0
@@ -56,19 +56,19 @@ The table below lists the Espressif chips that are currently supported or planne
     -
   * - ESP32-C3
     - Wi-Fi 4 + BLE 5.0
-    - `v4.1.1.0 <https://github.com/espressif/esp-at/releases/tag/v4.1.1.0>`_
+    - `v4.2.0.0 <https://github.com/espressif/esp-at/releases/tag/v4.2.0.0>`_
     -
   * - ESP32-C2
     - Wi-Fi 4 (or BLE 5.0)
-    - `v4.1.1.0 <https://github.com/espressif/esp-at/releases/tag/v4.1.1.0>`_
+    - `v4.2.0.0 <https://github.com/espressif/esp-at/releases/tag/v4.2.0.0>`_
     -
   * - ESP32
     - Wi-Fi 4 + BLE v4.2 (+ **BT**)
-    - `v4.1.1.0 <https://github.com/espressif/esp-at/releases/tag/v4.1.1.0>`_
+    - `v4.2.0.0 <https://github.com/espressif/esp-at/releases/tag/v4.2.0.0>`_
     -
   * - ESP32-S2
     - Wi-Fi 4
-    - `v4.1.1.0 <https://github.com/espressif/esp-at/releases/tag/v4.1.1.0>`_
+    - `v4.2.0.0 <https://github.com/espressif/esp-at/releases/tag/v4.2.0.0>`_
     - It is recommended to use the more cost-effective ESP32-C series.
 
 - ``(or BLE 5.0)`` indicates that Bluetooth LE functionality is supported in the AT software solution, but it is not included in the released firmware.
